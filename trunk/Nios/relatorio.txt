@@ -1,0 +1,49 @@
+projeto >> tools >> SOPC Builder
+
+Nome nios_system 
+
+add nios II/e
+
+add on_chip_memory
+
+add pio (2x) in e outra out
+
+add Jtag UART
+
+seta o nios II com a memoria on_chip
+
+System >> auto-assing base e auto assign irqs
+
+muuda o nome do pio, pra sw e led
+
+generate.
+
+
+ir no quartus e assossiar aos pinos da placa.
+
+compila
+
+
+para ver o codigo >> diretorio >> cpu_o (arquivo V)
+
+
+abra o note pad (para programar) (memoria reg, reg memoria é modo indireto)
+
+salva o programa no diretorio como nios.s
+
+abre o altera monitor program (antes descarregar o hardware na placa)
+
+gera um novo projeto (custom system, assembly program)
+
+botao compile & load.
+
+usar o botao continue pra brincar na plaquinha =D
+
+
+
+repetir o processo para programa em C. (lembrar de marcar o box "use small C library").
+
+
+tarefa : implementar uma fila em .s e .c
+
+estudar o cap 18, e implemntar o McLinux na FPGA
