@@ -54,7 +54,7 @@ void main()
 				}
 			}
 		}
-		else
+		/*else
 		{
 			if(estado == 1)
 			{
@@ -69,7 +69,7 @@ void main()
 					pushElement();
 				}
 			}
-		}
+		}*/
 		LEDs = 0;
 		for(i = 0; i<8; i++)
 		{
