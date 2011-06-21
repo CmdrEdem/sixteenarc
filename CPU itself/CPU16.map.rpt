@@ -1,6 +1,6 @@
 Analysis & Synthesis report for CPU16
-Wed Jun 01 11:45:20 2011
-Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+Tue Jun 21 01:08:26 2011
+Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
 
 
 ---------------------
@@ -14,22 +14,25 @@ Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Inverted Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Source assignments for altsyncram:altsyncram_component|altsyncram_u2t:auto_generated
- 14. Parameter Settings for User Entity Instance: Top-level Entity: |CPU16
- 15. Parameter Settings for User Entity Instance: altsyncram:altsyncram_component
- 16. altsyncram Parameter Settings by Entity Instance
- 17. Analysis & Synthesis Messages
+  9. State Machine - |CPU16|state
+ 10. User-Specified and Inferred Latches
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Source assignments for altsyncram:mem_instrucoes|altsyncram_2es:auto_generated
+ 15. Source assignments for altsyncram:mem_dados|altsyncram_0os:auto_generated
+ 16. Parameter Settings for User Entity Instance: Top-level Entity: |CPU16
+ 17. Parameter Settings for User Entity Instance: altsyncram:mem_instrucoes
+ 18. Parameter Settings for User Entity Instance: altsyncram:mem_dados
+ 19. altsyncram Parameter Settings by Entity Instance
+ 20. Analysis & Synthesis Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 1991-2010 Altera Corporation
+Copyright (C) 1991-2009 Altera Corporation
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -45,24 +48,24 @@ applicable agreement for further details.
 
 
 
-+-----------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                      ;
-+------------------------------------+----------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Jun 01 11:45:19 2011        ;
-; Quartus II Version                 ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
-; Revision Name                      ; CPU16                                        ;
-; Top-level Entity Name              ; CPU16                                        ;
-; Family                             ; Cyclone II                                   ;
-; Total logic elements               ; 132                                          ;
-;     Total combinational functions  ; 115                                          ;
-;     Dedicated logic registers      ; 46                                           ;
-; Total registers                    ; 46                                           ;
-; Total pins                         ; 58                                           ;
-; Total virtual pins                 ; 0                                            ;
-; Total memory bits                  ; 4,096                                        ;
-; Embedded Multiplier 9-bit elements ; 0                                            ;
-; Total PLLs                         ; 0                                            ;
-+------------------------------------+----------------------------------------------+
++------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                 ;
++------------------------------------+-----------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue Jun 21 01:08:26 2011   ;
+; Quartus II Version                 ; 9.1 Build 222 10/21/2009 SJ Web Edition ;
+; Revision Name                      ; CPU16                                   ;
+; Top-level Entity Name              ; CPU16                                   ;
+; Family                             ; Cyclone II                              ;
+; Total logic elements               ; 450                                     ;
+;     Total combinational functions  ; 431                                     ;
+;     Dedicated logic registers      ; 104                                     ;
+; Total registers                    ; 104                                     ;
+; Total pins                         ; 58                                      ;
+; Total virtual pins                 ; 0                                       ;
+; Total memory bits                  ; 8,192                                   ;
+; Embedded Multiplier 9-bit elements ; 0                                       ;
+; Total PLLs                         ; 0                                       ;
++------------------------------------+-----------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -130,7 +133,7 @@ applicable agreement for further details.
 ; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
 ; HDL message level                                                          ; Level2             ; Level2             ;
 ; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
-; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 100                ; 100                ;
 ; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
 ; Clock MUX Protection                                                       ; On                 ; On                 ;
 ; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
@@ -155,16 +158,18 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                 ;
-+----------------------------------+-----------------+----------------------------------+----------------------------------------------------------------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                        ; File Name with Absolute Path                                   ;
-+----------------------------------+-----------------+----------------------------------+----------------------------------------------------------------+
-; CPU16.v                          ; yes             ; User Verilog HDL File            ; D:/labArq1/CPU16/CPU16.v                                       ;
-; program.mif                      ; yes             ; User Memory Initialization File  ; D:/labArq1/CPU16/program.mif                                   ;
-; altsyncram.tdf                   ; yes             ; Megafunction                     ; c:/altera/91sp2/quartus/libraries/megafunctions/altsyncram.tdf ;
-; db/altsyncram_u2t.tdf            ; yes             ; Auto-Generated Megafunction      ; D:/labArq1/CPU16/db/altsyncram_u2t.tdf                         ;
-+----------------------------------+-----------------+----------------------------------+----------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                              ;
++----------------------------------+-----------------+----------------------------------+-----------------------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                        ; File Name with Absolute Path                                                ;
++----------------------------------+-----------------+----------------------------------+-----------------------------------------------------------------------------+
+; data.mif                         ; yes             ; User Memory Initialization File  ; D:/Files/ARQ1/Proj-CPU 16bits/CPU itself/data.mif                           ;
+; CPU16.v                          ; yes             ; User Verilog HDL File            ; D:/Files/ARQ1/Proj-CPU 16bits/CPU itself/CPU16.v                            ;
+; program.mif                      ; yes             ; User Memory Initialization File  ; D:/Files/ARQ1/Proj-CPU 16bits/CPU itself/program.mif                        ;
+; altsyncram.tdf                   ; yes             ; Megafunction                     ; d:/programas/alteraquartusii/quartus/libraries/megafunctions/altsyncram.tdf ;
+; db/altsyncram_2es.tdf            ; yes             ; Auto-Generated Megafunction      ; D:/Files/ARQ1/Proj-CPU 16bits/CPU itself/db/altsyncram_2es.tdf              ;
+; db/altsyncram_0os.tdf            ; yes             ; Auto-Generated Megafunction      ; D:/Files/ARQ1/Proj-CPU 16bits/CPU itself/db/altsyncram_0os.tdf              ;
++----------------------------------+-----------------+----------------------------------+-----------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -172,50 +177,120 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Estimated Total logic elements              ; 132   ;
+; Estimated Total logic elements              ; 450   ;
 ;                                             ;       ;
-; Total combinational functions               ; 115   ;
+; Total combinational functions               ; 431   ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 80    ;
-;     -- 3 input functions                    ; 22    ;
-;     -- <=2 input functions                  ; 13    ;
+;     -- 4 input functions                    ; 298   ;
+;     -- 3 input functions                    ; 97    ;
+;     -- <=2 input functions                  ; 36    ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 92    ;
-;     -- arithmetic mode                      ; 23    ;
+;     -- normal mode                          ; 360   ;
+;     -- arithmetic mode                      ; 71    ;
 ;                                             ;       ;
-; Total registers                             ; 46    ;
-;     -- Dedicated logic registers            ; 46    ;
+; Total registers                             ; 104   ;
+;     -- Dedicated logic registers            ; 104   ;
 ;     -- I/O registers                        ; 0     ;
 ;                                             ;       ;
 ; I/O pins                                    ; 58    ;
-; Total memory bits                           ; 4096  ;
+; Total memory bits                           ; 8192  ;
 ; Maximum fan-out node                        ; clock ;
-; Maximum fan-out                             ; 62    ;
-; Total fan-out                               ; 778   ;
-; Average fan-out                             ; 3.31  ;
+; Maximum fan-out                             ; 136   ;
+; Total fan-out                               ; 2257  ;
+; Average fan-out                             ; 3.61  ;
 +---------------------------------------------+-------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                     ;
-+---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
-; Compilation Hierarchy Node            ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                  ; Library Name ;
-+---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
-; |CPU16                                ; 115 (115)         ; 46 (46)      ; 4096        ; 0            ; 0       ; 0         ; 58   ; 0            ; |CPU16                                                               ; work         ;
-;    |altsyncram:altsyncram_component|  ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |CPU16|altsyncram:altsyncram_component                               ;              ;
-;       |altsyncram_u2t:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |CPU16|altsyncram:altsyncram_component|altsyncram_u2t:auto_generated ;              ;
-+---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                               ;
++---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node            ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                            ; Library Name ;
++---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------+--------------+
+; |CPU16                                ; 431 (431)         ; 104 (104)    ; 8192        ; 0            ; 0       ; 0         ; 58   ; 0            ; |CPU16                                                         ; work         ;
+;    |altsyncram:mem_dados|             ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |CPU16|altsyncram:mem_dados                                    ; work         ;
+;       |altsyncram_0os:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |CPU16|altsyncram:mem_dados|altsyncram_0os:auto_generated      ; work         ;
+;    |altsyncram:mem_instrucoes|        ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |CPU16|altsyncram:mem_instrucoes                               ;              ;
+;       |altsyncram_2es:auto_generated| ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |CPU16|altsyncram:mem_instrucoes|altsyncram_2es:auto_generated ;              ;
++---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis RAM Summary                                                                                                                                               ;
-+--------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+-------------+
-; Name                                                                     ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF         ;
-+--------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+-------------+
-; altsyncram:altsyncram_component|altsyncram_u2t:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 256          ; 16           ; --           ; --           ; 4096 ; program.mif ;
-+--------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+-------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                         ;
++--------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+-------------+
+; Name                                                               ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF         ;
++--------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+-------------+
+; altsyncram:mem_dados|altsyncram_0os:auto_generated|ALTSYNCRAM      ; AUTO ; Single Port ; 256          ; 16           ; --           ; --           ; 4096 ; data.mif    ;
+; altsyncram:mem_instrucoes|altsyncram_2es:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 256          ; 16           ; --           ; --           ; 4096 ; program.mif ;
++--------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+-------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |CPU16|state                                                                                                                                                                                                                                                                                                                       ;
++----------------------+--------------------+---------------------+--------------------+-------------------+------------------+-------------------+--------------------+--------------------+--------------------+--------------------+----------------------+---------------------+-------------------+--------------+-------------+----------------+
+; Name                 ; state.execute_addi ; state.execute_jzero ; state.execute_jpos ; state.execute_and ; state.execute_or ; state.execute_xor ; state.execute_subt ; state.execute_jneg ; state.execute_jump ; state.execute_load ; state.execute_store2 ; state.execute_store ; state.execute_add ; state.decode ; state.fetch ; state.reset_pc ;
++----------------------+--------------------+---------------------+--------------------+-------------------+------------------+-------------------+--------------------+--------------------+--------------------+--------------------+----------------------+---------------------+-------------------+--------------+-------------+----------------+
+; state.reset_pc       ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 0              ;
+; state.fetch          ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 1           ; 1              ;
+; state.decode         ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 1            ; 0           ; 1              ;
+; state.execute_add    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 1                 ; 0            ; 0           ; 1              ;
+; state.execute_store  ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 1                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_store2 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 1                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_load   ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 1                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_jump   ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 1                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_jneg   ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 1                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_subt   ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 1                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_xor    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 1                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_or     ; 0                  ; 0                   ; 0                  ; 0                 ; 1                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_and    ; 0                  ; 0                   ; 0                  ; 1                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_jpos   ; 0                  ; 0                   ; 1                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_jzero  ; 0                  ; 1                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_addi   ; 1                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
++----------------------+--------------------+---------------------+--------------------+-------------------+------------------+-------------------+--------------------+--------------------+--------------------+--------------------+----------------------+---------------------+-------------------+--------------+-------------+----------------+
+
+
++---------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                     ;
++-----------------------------------------------------+--------------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal      ; Free of Timing Hazards ;
++-----------------------------------------------------+--------------------------+------------------------+
+; register_out[0]$latch                               ; state.execute_store      ; yes                    ;
+; register_out[1]$latch                               ; state.execute_store      ; yes                    ;
+; register_out[2]$latch                               ; state.execute_store      ; yes                    ;
+; register_out[3]$latch                               ; state.execute_store      ; yes                    ;
+; register_out[4]$latch                               ; state.execute_store      ; yes                    ;
+; register_out[5]$latch                               ; state.execute_store      ; yes                    ;
+; register_out[6]$latch                               ; state.execute_store      ; yes                    ;
+; register_out[7]$latch                               ; state.execute_store      ; yes                    ;
+; register_out[8]$latch                               ; state.execute_store      ; yes                    ;
+; register_out[9]$latch                               ; state.execute_store      ; yes                    ;
+; register_out[10]$latch                              ; state.execute_store      ; yes                    ;
+; register_out[11]$latch                              ; state.execute_store      ; yes                    ;
+; register_out[12]$latch                              ; state.execute_store      ; yes                    ;
+; register_out[13]$latch                              ; state.execute_store      ; yes                    ;
+; register_out[14]$latch                              ; state.execute_store      ; yes                    ;
+; register_out[15]$latch                              ; state.execute_store      ; yes                    ;
+; program_address_register[0]                         ; program_address_register ; yes                    ;
+; program_address_register[1]                         ; program_address_register ; yes                    ;
+; program_address_register[2]                         ; program_address_register ; yes                    ;
+; program_address_register[3]                         ; program_address_register ; yes                    ;
+; program_address_register[4]                         ; program_address_register ; yes                    ;
+; program_address_register[5]                         ; program_address_register ; yes                    ;
+; program_address_register[6]                         ; program_address_register ; yes                    ;
+; program_address_register[7]                         ; program_address_register ; yes                    ;
+; memory_address_register[0]                          ; program_address_register ; yes                    ;
+; memory_address_register[1]                          ; program_address_register ; yes                    ;
+; memory_address_register[2]                          ; program_address_register ; yes                    ;
+; memory_address_register[3]                          ; program_address_register ; yes                    ;
+; memory_address_register[4]                          ; program_address_register ; yes                    ;
+; memory_address_register[5]                          ; program_address_register ; yes                    ;
+; memory_address_register[6]                          ; program_address_register ; yes                    ;
+; memory_address_register[7]                          ; program_address_register ; yes                    ;
+; Number of user-specified and inferred latches = 32  ;                          ;                        ;
++-----------------------------------------------------+--------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
 +------------------------------------------------------------+
@@ -223,8 +298,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------+--------------------+
 ; Register name                         ; Reason for Removal ;
 +---------------------------------------+--------------------+
-; state[3]                              ; Lost fanout        ;
-; Total Number of Removed Registers = 1 ;                    ;
+; state~4                               ; Lost fanout        ;
+; state~5                               ; Lost fanout        ;
+; state~6                               ; Lost fanout        ;
+; state~7                               ; Lost fanout        ;
+; state~8                               ; Lost fanout        ;
+; Total Number of Removed Registers = 5 ;                    ;
 +---------------------------------------+--------------------+
 
 
@@ -233,24 +312,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 46    ;
+; Total registers                              ; 104   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 4     ;
+; Number of registers using Asynchronous Clear ; 16    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 40    ;
+; Number of registers using Clock Enable       ; 88    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
-
-
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; state[3]~0                             ; 17      ;
-; Total number of inverted registers = 1 ;         ;
-+----------------------------------------+---------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------+
@@ -258,20 +327,32 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output     ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
-; 16:1               ; 3 bits    ; 30 LEs        ; 12 LEs               ; 18 LEs                 ; Yes        ; |CPU16|state[2]                ;
-; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |CPU16|program_counter[2]~reg0 ;
-; 13:1               ; 16 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |CPU16|register_A[1]~reg0      ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; No         ; |CPU16|Selector5               ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |CPU16|program_counter[3]~reg0 ;
+; 12:1               ; 16 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |CPU16|register_D[9]           ;
+; 12:1               ; 16 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |CPU16|register_C[9]           ;
+; 12:1               ; 16 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |CPU16|register_B[11]          ;
+; 12:1               ; 16 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |CPU16|register_A[13]          ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |CPU16|Mux10                   ;
+; 27:1               ; 8 bits    ; 144 LEs       ; 16 LEs               ; 128 LEs                ; No         ; |CPU16|Selector5               ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
 
 
-+--------------------------------------------------------------------------------------+
-; Source assignments for altsyncram:altsyncram_component|altsyncram_u2t:auto_generated ;
-+---------------------------------+--------------------+------+------------------------+
-; Assignment                      ; Value              ; From ; To                     ;
-+---------------------------------+--------------------+------+------------------------+
-; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                      ;
-+---------------------------------+--------------------+------+------------------------+
++--------------------------------------------------------------------------------+
+; Source assignments for altsyncram:mem_instrucoes|altsyncram_2es:auto_generated ;
++---------------------------------+--------------------+------+------------------+
+; Assignment                      ; Value              ; From ; To               ;
++---------------------------------+--------------------+------+------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                ;
++---------------------------------+--------------------+------+------------------+
+
+
++---------------------------------------------------------------------------+
+; Source assignments for altsyncram:mem_dados|altsyncram_0os:auto_generated ;
++---------------------------------+--------------------+------+-------------+
+; Assignment                      ; Value              ; From ; To          ;
++---------------------------------+--------------------+------+-------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -           ;
++---------------------------------+--------------------+------+-------------+
 
 
 +-----------------------------------------------------------------------+
@@ -285,98 +366,174 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; execute_add    ; 3     ; Signed Integer                               ;
 ; execute_store  ; 4     ; Signed Integer                               ;
 ; execute_store2 ; 5     ; Signed Integer                               ;
-; execute_store3 ; 6     ; Signed Integer                               ;
-; execute_load   ; 7     ; Signed Integer                               ;
-; execute_jump   ; 8     ; Signed Integer                               ;
-; execute_jneg   ; 9     ; Signed Integer                               ;
-; execute_subt   ; 10    ; Signed Integer                               ;
-; execute_xor    ; 11    ; Signed Integer                               ;
-; execute_or     ; 12    ; Signed Integer                               ;
-; execute_and    ; 13    ; Signed Integer                               ;
-; execute_jpos   ; 14    ; Signed Integer                               ;
-; execute_jzero  ; 15    ; Signed Integer                               ;
-; execute_addi   ; 16    ; Signed Integer                               ;
+; execute_load   ; 6     ; Signed Integer                               ;
+; execute_jump   ; 7     ; Signed Integer                               ;
+; execute_jneg   ; 8     ; Signed Integer                               ;
+; execute_subt   ; 9     ; Signed Integer                               ;
+; execute_xor    ; 10    ; Signed Integer                               ;
+; execute_or     ; 11    ; Signed Integer                               ;
+; execute_and    ; 12    ; Signed Integer                               ;
+; execute_jpos   ; 13    ; Signed Integer                               ;
+; execute_jzero  ; 14    ; Signed Integer                               ;
+; execute_addi   ; 15    ; Signed Integer                               ;
+; execute_shl    ; 16    ; Signed Integer                               ;
+; execute_shr    ; 17    ; Signed Integer                               ;
+; execute_in     ; 18    ; Signed Integer                               ;
+; execute_out    ; 19    ; Signed Integer                               ;
+; execute_wait   ; 20    ; Signed Integer                               ;
+; execute_call   ; 21    ; Signed Integer                               ;
+; execute_return ; 22    ; Signed Integer                               ;
 +----------------+-------+----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: altsyncram:altsyncram_component ;
-+------------------------------------+----------------------+------------------+
-; Parameter Name                     ; Value                ; Type             ;
-+------------------------------------+----------------------+------------------+
-; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped          ;
-; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY       ;
-; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY     ;
-; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE     ;
-; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE   ;
-; WIDTH_BYTEENA                      ; 1                    ; Untyped          ;
-; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped          ;
-; WIDTH_A                            ; 16                   ; Signed Integer   ;
-; WIDTHAD_A                          ; 8                    ; Signed Integer   ;
-; NUMWORDS_A                         ; 1                    ; Untyped          ;
-; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped          ;
-; ADDRESS_ACLR_A                     ; NONE                 ; Untyped          ;
-; OUTDATA_ACLR_A                     ; NONE                 ; Untyped          ;
-; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped          ;
-; INDATA_ACLR_A                      ; NONE                 ; Untyped          ;
-; BYTEENA_ACLR_A                     ; NONE                 ; Untyped          ;
-; WIDTH_B                            ; 1                    ; Untyped          ;
-; WIDTHAD_B                          ; 1                    ; Untyped          ;
-; NUMWORDS_B                         ; 1                    ; Untyped          ;
-; INDATA_REG_B                       ; CLOCK1               ; Untyped          ;
-; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped          ;
-; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped          ;
-; ADDRESS_REG_B                      ; CLOCK1               ; Untyped          ;
-; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped          ;
-; BYTEENA_REG_B                      ; CLOCK1               ; Untyped          ;
-; INDATA_ACLR_B                      ; NONE                 ; Untyped          ;
-; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped          ;
-; ADDRESS_ACLR_B                     ; NONE                 ; Untyped          ;
-; OUTDATA_ACLR_B                     ; NONE                 ; Untyped          ;
-; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped          ;
-; BYTEENA_ACLR_B                     ; NONE                 ; Untyped          ;
-; WIDTH_BYTEENA_A                    ; 1                    ; Untyped          ;
-; WIDTH_BYTEENA_B                    ; 1                    ; Untyped          ;
-; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped          ;
-; BYTE_SIZE                          ; 8                    ; Untyped          ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped          ;
-; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped          ;
-; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped          ;
-; INIT_FILE                          ; program.mif          ; Untyped          ;
-; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped          ;
-; MAXIMUM_DEPTH                      ; 0                    ; Untyped          ;
-; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped          ;
-; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped          ;
-; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped          ;
-; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped          ;
-; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped          ;
-; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped          ;
-; ENABLE_ECC                         ; FALSE                ; Untyped          ;
-; DEVICE_FAMILY                      ; Cyclone II           ; Untyped          ;
-; CBXI_PARAMETER                     ; altsyncram_u2t       ; Untyped          ;
-+------------------------------------+----------------------+------------------+
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: altsyncram:mem_instrucoes     ;
++------------------------------------+----------------------+----------------+
+; Parameter Name                     ; Value                ; Type           ;
++------------------------------------+----------------------+----------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped        ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY     ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY   ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE   ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped        ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped        ;
+; WIDTH_A                            ; 16                   ; Signed Integer ;
+; WIDTHAD_A                          ; 8                    ; Signed Integer ;
+; NUMWORDS_A                         ; 1                    ; Untyped        ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped        ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped        ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped        ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped        ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped        ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped        ;
+; WIDTH_B                            ; 1                    ; Untyped        ;
+; WIDTHAD_B                          ; 1                    ; Untyped        ;
+; NUMWORDS_B                         ; 1                    ; Untyped        ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped        ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped        ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped        ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped        ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped        ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped        ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped        ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped        ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped        ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped        ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped        ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped        ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped        ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped        ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped        ;
+; BYTE_SIZE                          ; 8                    ; Untyped        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped        ;
+; INIT_FILE                          ; program.mif          ; Untyped        ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped        ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped        ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped        ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped        ;
+; ENABLE_ECC                         ; FALSE                ; Untyped        ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped        ;
+; CBXI_PARAMETER                     ; altsyncram_2es       ; Untyped        ;
++------------------------------------+----------------------+----------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-----------------------------------------------------------------------------+
-; altsyncram Parameter Settings by Entity Instance                            ;
-+-------------------------------------------+---------------------------------+
-; Name                                      ; Value                           ;
-+-------------------------------------------+---------------------------------+
-; Number of entity instances                ; 1                               ;
-; Entity Instance                           ; altsyncram:altsyncram_component ;
-;     -- OPERATION_MODE                     ; SINGLE_PORT                     ;
-;     -- WIDTH_A                            ; 16                              ;
-;     -- NUMWORDS_A                         ; 1                               ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                    ;
-;     -- WIDTH_B                            ; 1                               ;
-;     -- NUMWORDS_B                         ; 1                               ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                          ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                    ;
-;     -- RAM_BLOCK_TYPE                     ; AUTO                            ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                       ;
-+-------------------------------------------+---------------------------------+
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: altsyncram:mem_dados          ;
++------------------------------------+----------------------+----------------+
+; Parameter Name                     ; Value                ; Type           ;
++------------------------------------+----------------------+----------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped        ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY     ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY   ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE   ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped        ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped        ;
+; WIDTH_A                            ; 16                   ; Signed Integer ;
+; WIDTHAD_A                          ; 8                    ; Signed Integer ;
+; NUMWORDS_A                         ; 1                    ; Untyped        ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped        ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped        ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped        ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped        ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped        ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped        ;
+; WIDTH_B                            ; 1                    ; Untyped        ;
+; WIDTHAD_B                          ; 1                    ; Untyped        ;
+; NUMWORDS_B                         ; 1                    ; Untyped        ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped        ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped        ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped        ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped        ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped        ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped        ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped        ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped        ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped        ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped        ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped        ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped        ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped        ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped        ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped        ;
+; BYTE_SIZE                          ; 8                    ; Untyped        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped        ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped        ;
+; INIT_FILE                          ; data.mif             ; Untyped        ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped        ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped        ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped        ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped        ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped        ;
+; ENABLE_ECC                         ; FALSE                ; Untyped        ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped        ;
+; CBXI_PARAMETER                     ; altsyncram_0os       ; Untyped        ;
++------------------------------------+----------------------+----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                      ;
++-------------------------------------------+---------------------------+
+; Name                                      ; Value                     ;
++-------------------------------------------+---------------------------+
+; Number of entity instances                ; 2                         ;
+; Entity Instance                           ; altsyncram:mem_instrucoes ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT               ;
+;     -- WIDTH_A                            ; 16                        ;
+;     -- NUMWORDS_A                         ; 1                         ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED              ;
+;     -- WIDTH_B                            ; 1                         ;
+;     -- NUMWORDS_B                         ; 1                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                 ;
+; Entity Instance                           ; altsyncram:mem_dados      ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT               ;
+;     -- WIDTH_A                            ; 16                        ;
+;     -- NUMWORDS_A                         ; 1                         ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED              ;
+;     -- WIDTH_B                            ; 1                         ;
+;     -- NUMWORDS_B                         ; 1                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                 ;
++-------------------------------------------+---------------------------+
 
 
 +-------------------------------+
@@ -384,46 +541,70 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
-    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Wed Jun 01 11:45:08 2011
+    Info: Version 9.1 Build 222 10/21/2009 SJ Web Edition
+    Info: Processing started: Tue Jun 21 01:08:20 2011
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CPU16 -c CPU16
 Info: Found 1 design units, including 1 entities, in source file cpu16.v
     Info: Found entity 1: CPU16
 Info: Elaborating entity "CPU16" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at CPU16.v(56): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(63): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(69): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(70): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(77): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(79): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(82): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(86): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(88): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(90): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(92): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(94): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(96): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(98): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(100): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(102): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(104): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(111): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(116): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(121): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(127): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(133): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(139): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(144): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(149): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(154): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(159): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(163): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at CPU16.v(167): truncated value with size 32 to match size of target (4)
-Warning (10199): Verilog HDL Case Statement warning at CPU16.v(169): case item expression never matches the case expression
-Warning (10230): Verilog HDL assignment warning at CPU16.v(177): truncated value with size 32 to match size of target (4)
-Info: Elaborating entity "altsyncram" for hierarchy "altsyncram:altsyncram_component"
-Info: Elaborated megafunction instantiation "altsyncram:altsyncram_component"
-Info: Instantiated megafunction "altsyncram:altsyncram_component" with the following parameter:
+Warning (10036): Verilog HDL or VHDL warning at CPU16.v(30): object "program_data_register_out" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at CPU16.v(113): truncated value with size 32 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(344): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(346): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(348): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(350): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(364): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(371): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(378): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(385): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(405): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(412): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(419): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(426): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(440): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(447): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(454): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16.v(461): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10240): Verilog HDL Always Construct warning at CPU16.v(328): inferring latch(es) for variable "program_address_register", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at CPU16.v(328): inferring latch(es) for variable "memory_address_register", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at CPU16.v(328): inferring latch(es) for variable "register_out", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at CPU16.v(328): inferring latch(es) for variable "program_write", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "program_write" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[0]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[1]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[2]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[3]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[4]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[5]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[6]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[7]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[8]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[9]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[10]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[11]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[12]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[13]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[14]" at CPU16.v(328)
+Info (10041): Inferred latch for "register_out[15]" at CPU16.v(328)
+Info (10041): Inferred latch for "memory_address_register[0]" at CPU16.v(328)
+Info (10041): Inferred latch for "memory_address_register[1]" at CPU16.v(328)
+Info (10041): Inferred latch for "memory_address_register[2]" at CPU16.v(328)
+Info (10041): Inferred latch for "memory_address_register[3]" at CPU16.v(328)
+Info (10041): Inferred latch for "memory_address_register[4]" at CPU16.v(328)
+Info (10041): Inferred latch for "memory_address_register[5]" at CPU16.v(328)
+Info (10041): Inferred latch for "memory_address_register[6]" at CPU16.v(328)
+Info (10041): Inferred latch for "memory_address_register[7]" at CPU16.v(328)
+Info (10041): Inferred latch for "program_address_register[0]" at CPU16.v(328)
+Info (10041): Inferred latch for "program_address_register[1]" at CPU16.v(328)
+Info (10041): Inferred latch for "program_address_register[2]" at CPU16.v(328)
+Info (10041): Inferred latch for "program_address_register[3]" at CPU16.v(328)
+Info (10041): Inferred latch for "program_address_register[4]" at CPU16.v(328)
+Info (10041): Inferred latch for "program_address_register[5]" at CPU16.v(328)
+Info (10041): Inferred latch for "program_address_register[6]" at CPU16.v(328)
+Info (10041): Inferred latch for "program_address_register[7]" at CPU16.v(328)
+Info: Elaborating entity "altsyncram" for hierarchy "altsyncram:mem_instrucoes"
+Info: Elaborated megafunction instantiation "altsyncram:mem_instrucoes"
+Info: Instantiated megafunction "altsyncram:mem_instrucoes" with the following parameter:
     Info: Parameter "operation_mode" = "SINGLE_PORT"
     Info: Parameter "width_a" = "16"
     Info: Parameter "widthad_a" = "8"
@@ -431,24 +612,57 @@ Info: Instantiated megafunction "altsyncram:altsyncram_component" with the follo
     Info: Parameter "lpm_type" = "altsyncram"
     Info: Parameter "init_file" = "program.mif"
     Info: Parameter "intended_device_family" = "Cyclone"
-Info: Found 1 design units, including 1 entities, in source file db/altsyncram_u2t.tdf
-    Info: Found entity 1: altsyncram_u2t
-Info: Elaborating entity "altsyncram_u2t" for hierarchy "altsyncram:altsyncram_component|altsyncram_u2t:auto_generated"
-Warning (12020): Port "address_a" on the entity instantiation of "altsyncram_component" is connected to a signal of width 16. The formal width of the signal in the module is 8.  The extra bits will be ignored.
-Warning (12020): Port "wren_a" on the entity instantiation of "altsyncram_component" is connected to a signal of width 16. The formal width of the signal in the module is 1.  The extra bits will be ignored.
-Info: Registers with preset signals will power-up high
-Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Info: 1 registers lost all their fanouts during netlist optimizations. The first 1 are displayed below.
-    Info: Register "state[3]" lost all its fanouts during netlist optimizations.
-Info: Implemented 207 device resources after synthesis - the final resource count might be different
+Info: Found 1 design units, including 1 entities, in source file db/altsyncram_2es.tdf
+    Info: Found entity 1: altsyncram_2es
+Info: Elaborating entity "altsyncram_2es" for hierarchy "altsyncram:mem_instrucoes|altsyncram_2es:auto_generated"
+Info: Elaborating entity "altsyncram" for hierarchy "altsyncram:mem_dados"
+Info: Elaborated megafunction instantiation "altsyncram:mem_dados"
+Info: Instantiated megafunction "altsyncram:mem_dados" with the following parameter:
+    Info: Parameter "operation_mode" = "SINGLE_PORT"
+    Info: Parameter "width_a" = "16"
+    Info: Parameter "widthad_a" = "8"
+    Info: Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info: Parameter "lpm_type" = "altsyncram"
+    Info: Parameter "init_file" = "data.mif"
+    Info: Parameter "intended_device_family" = "Cyclone"
+Info: Found 1 design units, including 1 entities, in source file db/altsyncram_0os.tdf
+    Info: Found entity 1: altsyncram_0os
+Info: Elaborating entity "altsyncram_0os" for hierarchy "altsyncram:mem_dados|altsyncram_0os:auto_generated"
+Warning (12020): Port "address_a" on the entity instantiation of "mem_dados" is connected to a signal of width 16. The formal width of the signal in the module is 8.  The extra bits will be ignored.
+Warning (12020): Port "wren_a" on the entity instantiation of "mem_dados" is connected to a signal of width 16. The formal width of the signal in the module is 1.  The extra bits will be ignored.
+Warning (12020): Port "address_a" on the entity instantiation of "mem_instrucoes" is connected to a signal of width 16. The formal width of the signal in the module is 8.  The extra bits will be ignored.
+Warning (12020): Port "wren_a" on the entity instantiation of "mem_instrucoes" is connected to a signal of width 16. The formal width of the signal in the module is 1.  The extra bits will be ignored.
+Warning: Latch program_address_register[0] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal state.decode
+Warning: Latch program_address_register[1] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal state.decode
+Warning: Latch program_address_register[2] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal state.decode
+Warning: Latch program_address_register[3] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal state.decode
+Warning: Latch program_address_register[4] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal state.decode
+Warning: Latch program_address_register[5] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal state.decode
+Warning: Latch program_address_register[6] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal state.decode
+Warning: Latch program_address_register[7] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal state.decode
+Info: 5 registers lost all their fanouts during netlist optimizations. The first 5 are displayed below.
+    Info: Register "state~4" lost all its fanouts during netlist optimizations.
+    Info: Register "state~5" lost all its fanouts during netlist optimizations.
+    Info: Register "state~6" lost all its fanouts during netlist optimizations.
+    Info: Register "state~7" lost all its fanouts during netlist optimizations.
+    Info: Register "state~8" lost all its fanouts during netlist optimizations.
+Info: Implemented 540 device resources after synthesis - the final resource count might be different
     Info: Implemented 2 input pins
     Info: Implemented 56 output pins
-    Info: Implemented 133 logic cells
-    Info: Implemented 16 RAM segments
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 33 warnings
-    Info: Peak virtual memory: 215 megabytes
-    Info: Processing ended: Wed Jun 01 11:45:21 2011
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Implemented 450 logic cells
+    Info: Implemented 32 RAM segments
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 42 warnings
+    Info: Peak virtual memory: 222 megabytes
+    Info: Processing ended: Tue Jun 21 01:08:26 2011
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:05
 
 

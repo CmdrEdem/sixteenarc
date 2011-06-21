@@ -32,29 +32,28 @@ module CPU16 (
 	wire[15:0] program_write_out = program_write;
 
 	parameter 	reset_pc = 0,
-					fetch = 1,
-					decode = 2,
-					execute_add = 3,
-					execute_store = 4,
-					execute_store2 = 5,
-					execute_store3 = 6,
-					execute_load = 7,
-					execute_jump = 8,
-					execute_jneg = 9,
-					execute_subt = 10,
-					execute_xor = 11,
-					execute_or = 12,
-					execute_and = 13,
-					execute_jpos = 14,
-					execute_jzero = 15,
-					execute_addi = 16,
-					execute_shl = 17,
-					execute_shr = 18,
-					execute_in = 19,
-					execute_out = 20,
-					execute_wait = 21,
-					execute_call = 22,
-					execute_return = 23;
+				fetch = 1,
+				decode = 2,
+				execute_add = 3,
+				execute_store = 4,
+				execute_store2 = 5,
+				execute_load = 6,
+				execute_jump = 7,
+				execute_jneg = 8,
+				execute_subt = 9,
+				execute_xor = 10,
+				execute_or = 11,
+				execute_and = 12,
+				execute_jpos = 13,
+				execute_jzero = 14,
+				execute_addi = 15,
+				execute_shl = 16,
+				execute_shr = 17,
+				execute_in = 18,
+				execute_out = 19,
+				execute_wait = 20,
+				execute_call = 21,
+				execute_return = 22;
 	
 		//Memória de instruções
 		altsyncram	mem_instrucoes(
@@ -100,272 +99,224 @@ module CPU16 (
 					case(state)
 						reset_pc:
 							begin
-									program_counter = 8'b00000000;
-									register_A = 16'b0000000000000000;
-									register_B = 16'b0000000000000000;
-									register_C = 16'b0000000000000000;
-									register_D = 16'b0000000000000000;
-									state = fetch;
+								program_counter = 8'b00000000;
+								register_A = 16'b0000000000000000;
+								register_B = 16'b0000000000000000;
+								register_C = 16'b0000000000000000;
+								register_D = 16'b0000000000000000;
+								state = fetch;
 							end
 							
 						fetch:
 							begin
-									instruction_register = program_data_register;
-									program_counter = program_counter + 1;
-									state = decode;
+								instruction_register = program_data_register;
+								program_counter = program_counter + 1;
+								state = decode;
 							end
 						
 						decode:
 							begin
-									case(instruction_register[15:10])
-											6'b000000:
-												state = execute_add;
-											6'b000001:
-												state = execute_store;
-											6'b000010:
-												state = execute_load;
-											6'b000011:
-												state = execute_jump;
-											6'b000100:
-												state = execute_jneg;
-											6'b000101:
-												state = execute_subt;
-											6'b000110:
-												state = execute_xor;
-											6'b000111:
-												state = execute_or;
-											6'b001000:
-												state = execute_and;
-											6'b001001:
-												state = execute_jpos;
-											6'b001010:
-												state = execute_jzero;
-											6'b001011:
-												state = execute_addi;
-											default:
-												state = fetch;
-									endcase
+								case(instruction_register[15:10])
+									6'b000000:
+										state = execute_add;
+									6'b000001:
+										state = execute_store;
+									6'b000010:
+										state = execute_load;
+									6'b000011:
+										state = execute_jump;
+									6'b000100:
+										state = execute_jneg;
+									6'b000101:
+										state = execute_subt;
+									6'b000110:
+										state = execute_xor;
+									6'b000111:
+										state = execute_or;
+									6'b001000:
+										state = execute_and;
+									6'b001001:
+										state = execute_jpos;
+									6'b001010:
+										state = execute_jzero;
+									6'b001011:
+										state = execute_addi;
+									default:
+										state = fetch;
+								endcase
 							end
 							
 						execute_add:
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										begin
-											register_A = register_A + memory_data_register;
-											state = fetch;
-										end
+										register_A = register_A + memory_data_register;
 									2'b01:
-										begin
-											register_B = register_B + memory_data_register;
-											state = fetch;
-										end
+										register_B = register_B + memory_data_register;
 									2'b10:
-										begin
-											register_C = register_C + memory_data_register;
-											state = fetch;
-										end
+										register_C = register_C + memory_data_register;
 									2'b11:
-										begin
-											register_D = register_D + memory_data_register;
-											state = fetch;
-										end
+										register_D = register_D + memory_data_register;
 								endcase
+								state = fetch;
 							end
 						
 						execute_store:
 							begin
-									state = execute_store2;
+								state = execute_store2;
 							end
 						
 						execute_store2:
 							begin
-									state = execute_store3;
+								state = fetch;
 							end
 						
 						execute_load:
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										begin
-											register_A = memory_data_register;
-											state = fetch;
-										end
+										register_A = memory_data_register;
 									2'b01:
-										begin
-											register_B = memory_data_register;
-											state = fetch;
-										end
+										register_B = memory_data_register;
 									2'b10:
-										begin
-											register_C = memory_data_register;
-											state = fetch;
-										end
+										register_C = memory_data_register;
 									2'b11:
-										begin
-											register_D = memory_data_register;
-											state = fetch;
-										end
+										register_D = memory_data_register;
 								endcase
+								state = fetch;
 							end
 						
-						execute_jump :
+						execute_jump:
 							begin
-									program_counter = instruction_register[7:0];
+									program_counter = program_address_register;
 									state = fetch;
 							end
-						execute_jneg :
+							
+						execute_jneg:
 							begin
-								case(instruction_register[9:8])
-									2'b00:
-										begin
-											if(register_A[15])
-												memory_address_register = instruction_register[7:0];
-											state = fetch;
-										end
-									2'b01:
-										begin
-											if(register_B[15])
-												memory_address_register = instruction_register[7:0];
-											state = fetch;
-										end
-									2'b10:
-										begin
-											if(register_C[15])
-												memory_address_register = instruction_register[7:0];
-											state = fetch;
-										end
-									2'b11:
-										begin
-											if(register_D[15])
-												memory_address_register = instruction_register[7:0];
-											state = fetch;
-										end
-								endcase
-							end
-						execute_subt :
-							begin
-								case(instruction_register[9:8])
-									2'b00:
-										begin
-											register_A = register_A - memory_data_register;
-											state = fetch;
-										end
-									2'b01:
-										begin
-											register_B = register_B - memory_data_register;
-											state = fetch;
-										end
-									2'b10:
-										begin
-											register_C = register_C - memory_data_register;
-											state = fetch;
-										end
-									2'b11:
-										begin
-											register_D = register_D - memory_data_register;
-											state = fetch;
-										end
-								endcase
-							end
-						execute_xor :
-							begin
-								case(instruction_register[9:8])
-									2'b00:
-										begin
-											register_A = register_A ^ memory_data_register;
-											state = fetch;
-										end
-									2'b01:
-										begin
-											register_B = register_B ^ memory_data_register;
-											state = fetch;
-										end
-									2'b10:
-										begin
-											register_C = register_C ^ memory_data_register;
-											state = fetch;
-										end
-									2'b11:
-										begin
-											register_D = register_D ^ memory_data_register;
-											state = fetch;
-										end
-								endcase
-							end
-						execute_or :
-							begin
-								case(instruction_register[9:8])
-									2'b00:
-										begin
-											register_A = register_A | memory_data_register;
-											state = fetch;
-										end
-									2'b01:
-										begin
-											register_B = register_B | memory_data_register;
-											state = fetch;
-										end
-									2'b10:
-										begin
-											register_C = register_C | memory_data_register;
-											state = fetch;
-										end
-									2'b11:
-										begin
-											register_D = register_D | memory_data_register;
-											state = fetch;
-										end
-								endcase
-							end
-						execute_and :
-							begin
-								case(instruction_register[9:8])
-									2'b00:
-										begin
-											register_A = register_A & memory_data_register;
-											state = fetch;
-										end
-									2'b01:
-										begin
-											register_B = register_B & memory_data_register;
-											state = fetch;
-										end
-									2'b10:
-										begin
-											register_C = register_C & memory_data_register;
-											state = fetch;
-										end
-									2'b11:
-										begin
-											register_D = register_D & memory_data_register;
-											state = fetch;
-										end
-								endcase
-							end
-						execute_jpos :
-							begin
-									state = fetch;
-							end
-						execute_jzero :
-							begin
-									state = fetch;
-							end
-						execute_addi :
-							begin
-									register_A = register_A | memory_data_register;
-									state = fetch;
-							end
-						execute_in :
-							begin
-								//register_A = io.in;
+								//O registrador selecionado já foi testado e o endereco correto
+								//em program_address_register	
+								program_counter = program_address_register;
 								state = fetch;
 							end
-						execute_out :
+							
+						execute_subt:
 							begin
-								//io.out = register_A;
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = register_A - memory_data_register;
+									2'b01:
+										register_B = register_B - memory_data_register;
+									2'b10:
+										register_C = register_C - memory_data_register;
+									2'b11:
+										register_D = register_D - memory_data_register;
+								endcase
 								state = fetch;
 							end
+							
+						execute_xor:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = register_A ^ memory_data_register;
+									2'b01:
+										register_B = register_B ^ memory_data_register;
+									2'b10:
+										register_C = register_C ^ memory_data_register;
+									2'b11:
+										register_D = register_D ^ memory_data_register;
+								endcase
+								state = fetch;
+							end
+							
+						execute_or:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = register_A | memory_data_register;
+									2'b01:
+										register_B = register_B | memory_data_register;
+									2'b10:
+										register_C = register_C | memory_data_register;
+									2'b11:
+										register_D = register_D | memory_data_register;
+								endcase
+								state = fetch;
+							end
+							
+						execute_and:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = register_A & memory_data_register;
+									2'b01:
+										register_B = register_B & memory_data_register;
+									2'b10:
+										register_C = register_C & memory_data_register;
+									2'b11:
+										register_D = register_D & memory_data_register;
+								endcase
+								state = fetch;
+							end
+							
+						execute_jpos:
+							begin
+								program_counter = program_address_register;
+								state = fetch;
+							end
+							
+						execute_jzero:
+							begin
+								program_counter = program_address_register;
+								state = fetch;
+							end
+							
+						execute_addi:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = register_A | memory_data_register;
+									2'b01:
+										register_B = register_B | memory_data_register;
+									2'b10:
+										register_C = register_C | memory_data_register;
+									2'b11:
+										register_D = register_D | memory_data_register;
+								endcase
+								state = fetch;
+							end
+							
+					//Instrucões de I/O --------------------------------------------------------------
+					/*	execute_in:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = io.in;
+									2'b01:
+										register_B = io.in;
+									2'b10:
+										register_C = io.in;
+									2'b11:
+										register_D = io.in;
+								endcase
+								state = fetch;
+							end
+						execute_out:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										io.out = register_A;
+									2'b01:
+										io.out = register_B;
+									2'b10:
+										io.out = register_C;
+									2'b11:
+										io.out = register_D;
+								endcase
+								state = fetch;
+							end
+					*/
 						default:
 							begin
 								state = fetch;
@@ -380,24 +331,149 @@ module CPU16 (
 				case(state)
 					reset_pc: program_address_register = 8'h00;
 					fetch: program_address_register = program_counter;
-					decode: program_address_register = instruction_register[7:0];
+					decode: memory_address_register = instruction_register[7:0];
 					execute_add: program_address_register = program_counter;
-					execute_store: program_address_register = instruction_register[7:0];
+					
+					// STORE -----------------------------------------------------------------------------------
+					execute_store: 
+						begin
+							memory_address_register = instruction_register[7:0];
+							
+							case(instruction_register[9:8])
+								2'b00:
+									register_out = register_A;
+								2'b01:
+									register_out = register_B;
+								2'b10:
+									register_out = register_C;
+								2'b11:
+									register_out = register_D;
+							endcase
+						end
+						
 					execute_store2: program_address_register = program_counter;
 					execute_load: program_address_register = program_counter;
 					execute_jump: program_address_register = instruction_register[7:0];
 					
+					//JNEG ---------------------------------------------------------------------------------
 					execute_jneg: 
 					begin
-						if(register_A[15])
-							program_address_register = instruction_register[7:0];
-						else
-							program_address_register = program_counter;
+						case(instruction_register[9:8])
+							2'b00:
+								begin
+									if(register_A[15])
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+							2'b01:
+								begin
+									if(register_B[15])
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+							2'b10:
+								begin
+									if(register_C[15])
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+							2'b11:
+								begin
+									if(register_D[15])
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+						endcase
+						
 					end
+					
+					execute_subt: program_address_register = program_counter;
+					execute_xor: program_address_register = program_counter;
+					execute_or: program_address_register = program_counter;
+					execute_and: program_address_register = program_counter;
+					
+					// JPOS ----------------------------------------------------------------------------------
+					execute_jpos:
+					begin
+						case(instruction_register[9:8])
+							2'b00:
+								begin
+									if(!register_A[15])
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+							2'b01:
+								begin
+									if(!register_B[15])
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+							2'b10:
+								begin
+									if(!register_C[15])
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+							2'b11:
+								begin
+									if(!register_D[15])
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+						endcase
+					end
+					
+					// JZERO ----------------------------------------------------------------------------------
+					execute_jzero:
+					begin
+						case(instruction_register[9:8])
+							2'b00:
+								begin
+									if(register_A == 16'b0)
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+							2'b01:
+								begin
+									if(register_B == 16'b0)
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+							2'b10:
+								begin
+									if(register_C == 16'b0)
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+							2'b11:
+								begin
+									if(register_D == 16'b0)
+										program_address_register = instruction_register[7:0];
+									else
+										program_address_register = program_counter;
+								end
+						endcase
+					end
+					
+					execute_addi: program_address_register = program_counter;
+					//execute_in: program_address_register = program_counter;
+					//execute_out: program_address_register = program_counter;
 					
 					default: program_address_register = program_counter;
 					
 				endcase
+				
 				
 				case(state)
 					execute_store: 
