@@ -1,4 +1,4 @@
- -- Copyright (C) 1991-2010 Altera Corporation
+ -- Copyright (C) 1991-2009 Altera Corporation
  -- Your use of Altera Corporation's design tools, logic functions 
  -- and other software and tools, and its AMPP partner logic 
  -- functions, and any output files from any of the foregoing 
@@ -48,9 +48,10 @@
  --					This pin should be connected to GND. It may also be connected  to a
  --					valid signal  on the board  (low, high, or toggling)  if that signal
  --					is required for a different revision of the design.
- -- GND*          : Unused  I/O  pin.   For transceiver I/O banks, connect each pin marked GND*
- --           	    either individually through a 10k Ohm resistor to GND or tie all pins
- --           	    together and connect through a single 10k Ohm resistor to GND.
+ -- GND*          : Unused  I/O  pin.   For transceiver I/O banks (Bank 13, 14, 15, 16 and 17),
+ --           	    connect each pin marked GND* either individually through a 10k Ohm resistor
+ --           	    to GND or tie all pins together and connect through a single 10k Ohm resistor
+ --           	    to GND.
  --           	    For non-transceiver I/O banks, connect each pin marked GND* directly to GND
  --           	    or leave it unconnected.
  -- RESERVED      : Unused I/O pin, which MUST be left unconnected.
@@ -66,7 +67,7 @@
  -- Pin directions (input, output or bidir) are based on device operating in user mode.
  ---------------------------------------------------------------------------------
 
-Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
 CHIP  "CPU16"  ASSIGNED TO AN: EP2C20F484C7
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
@@ -77,14 +78,14 @@ GND*                         : A3        :        :                   :         
 GND*                         : A4        :        :                   :         : 3         :                
 GND*                         : A5        :        :                   :         : 3         :                
 GND*                         : A6        :        :                   :         : 3         :                
-register_A[5]                : A7        : output : 3.3-V LVTTL       :         : 3         : N              
-program_counter[5]           : A8        : output : 3.3-V LVTTL       :         : 3         : N              
-memory_data_register_out[13] : A9        : output : 3.3-V LVTTL       :         : 3         : N              
-instruction_register[5]      : A10       : output : 3.3-V LVTTL       :         : 3         : N              
-instruction_register[4]      : A11       : output : 3.3-V LVTTL       :         : 3         : N              
+register_out[4]              : A7        : output : 3.3-V LVTTL       :         : 3         : N              
+instruction_register[4]      : A8        : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[1]  : A9        : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[13] : A10       : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[10] : A11       : output : 3.3-V LVTTL       :         : 3         : N              
 GND+                         : A12       :        :                   :         : 4         :                
-instruction_register[0]      : A13       : output : 3.3-V LVTTL       :         : 4         : N              
-program_counter[3]           : A14       : output : 3.3-V LVTTL       :         : 4         : N              
+register_out[5]              : A13       : output : 3.3-V LVTTL       :         : 4         : N              
+GND*                         : A14       :        :                   :         : 4         :                
 GND*                         : A15       :        :                   :         : 4         :                
 GND*                         : A16       :        :                   :         : 4         :                
 GND*                         : A17       :        :                   :         : 4         :                
@@ -100,9 +101,9 @@ GND*                         : AA4       :        :                   :         
 GND*                         : AA5       :        :                   :         : 8         :                
 GND*                         : AA6       :        :                   :         : 8         :                
 GND*                         : AA7       :        :                   :         : 8         :                
-memory_data_register_out[9]  : AA8       : output : 3.3-V LVTTL       :         : 8         : N              
-register_A[7]                : AA9       : output : 3.3-V LVTTL       :         : 8         : N              
-GND*                         : AA10      :        :                   :         : 8         :                
+instruction_register[14]     : AA8       : output : 3.3-V LVTTL       :         : 8         : N              
+instruction_register[12]     : AA9       : output : 3.3-V LVTTL       :         : 8         : N              
+memory_data_register_out[7]  : AA10      : output : 3.3-V LVTTL       :         : 8         : N              
 GND*                         : AA11      :        :                   :         : 8         :                
 GND*                         : AA12      :        :                   :         : 7         :                
 GND*                         : AA13      :        :                   :         : 7         :                
@@ -122,9 +123,9 @@ GND*                         : AB4       :        :                   :         
 GND*                         : AB5       :        :                   :         : 8         :                
 GND*                         : AB6       :        :                   :         : 8         :                
 GND*                         : AB7       :        :                   :         : 8         :                
-instruction_register[14]     : AB8       : output : 3.3-V LVTTL       :         : 8         : N              
-GND*                         : AB9       :        :                   :         : 8         :                
-GND*                         : AB10      :        :                   :         : 8         :                
+program_counter[6]           : AB8       : output : 3.3-V LVTTL       :         : 8         : N              
+register_out[12]             : AB9       : output : 3.3-V LVTTL       :         : 8         : N              
+memory_data_register_out[4]  : AB10      : output : 3.3-V LVTTL       :         : 8         : N              
 GND*                         : AB11      :        :                   :         : 8         :                
 GND*                         : AB12      :        :                   :         : 7         :                
 GND*                         : AB13      :        :                   :         : 7         :                
@@ -143,13 +144,13 @@ GND*                         : B3        :        :                   :         
 GND*                         : B4        :        :                   :         : 3         :                
 GND*                         : B5        :        :                   :         : 3         :                
 GND*                         : B6        :        :                   :         : 3         :                
-instruction_register[7]      : B7        : output : 3.3-V LVTTL       :         : 3         : N              
-register_A[3]                : B8        : output : 3.3-V LVTTL       :         : 3         : N              
-memory_data_register_out[2]  : B9        : output : 3.3-V LVTTL       :         : 3         : N              
-memory_data_register_out[1]  : B10       : output : 3.3-V LVTTL       :         : 3         : N              
-program_counter[1]           : B11       : output : 3.3-V LVTTL       :         : 3         : N              
+program_counter[2]           : B7        : output : 3.3-V LVTTL       :         : 3         : N              
+instruction_register[5]      : B8        : output : 3.3-V LVTTL       :         : 3         : N              
+register_out[11]             : B9        : output : 3.3-V LVTTL       :         : 3         : N              
+instruction_register[8]      : B10       : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[9]  : B11       : output : 3.3-V LVTTL       :         : 3         : N              
 GND+                         : B12       :        :                   :         : 4         :                
-instruction_register[3]      : B13       : output : 3.3-V LVTTL       :         : 4         : N              
+memory_data_register_out[6]  : B13       : output : 3.3-V LVTTL       :         : 4         : N              
 GND*                         : B14       :        :                   :         : 4         :                
 GND*                         : B15       :        :                   :         : 4         :                
 GND*                         : B16       :        :                   :         : 4         :                
@@ -167,8 +168,8 @@ GND                          : C5        : gnd    :                   :         
 VCCIO3                       : C6        : power  :                   : 3.3V    : 3         :                
 GND*                         : C7        :        :                   :         : 3         :                
 GND                          : C8        : gnd    :                   :         :           :                
-instruction_register[8]      : C9        : output : 3.3-V LVTTL       :         : 3         : N              
-register_A[11]               : C10       : output : 3.3-V LVTTL       :         : 3         : N              
+register_out[1]              : C9        : output : 3.3-V LVTTL       :         : 3         : N              
+register_out[7]              : C10       : output : 3.3-V LVTTL       :         : 3         : N              
 VCCIO3                       : C11       : power  :                   : 3.3V    : 3         :                
 VCCIO4                       : C12       : power  :                   : 3.3V    : 4         :                
 GND*                         : C13       :        :                   :         : 4         :                
@@ -182,16 +183,16 @@ GND*                         : C20       :        :                   :         
 GND*                         : C21       :        :                   :         : 5         :                
 GND*                         : C22       :        :                   :         : 5         :                
 GND*                         : D1        :        :                   :         : 2         :                
-memory_data_register_out[4]  : D2        : output : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : D2        :        :                   :         : 2         :                
 GND*                         : D3        :        :                   :         : 2         :                
 GND*                         : D4        :        :                   :         : 2         :                
 GND*                         : D5        :        :                   :         : 2         :                
 GND*                         : D6        :        :                   :         : 2         :                
-register_A[9]                : D7        : output : 3.3-V LVTTL       :         : 3         : N              
-register_A[12]               : D8        : output : 3.3-V LVTTL       :         : 3         : N              
-memory_data_register_out[15] : D9        : output : 3.3-V LVTTL       :         : 3         : N              
+register_out[14]             : D7        : output : 3.3-V LVTTL       :         : 3         : N              
+program_counter[7]           : D8        : output : 3.3-V LVTTL       :         : 3         : N              
+instruction_register[7]      : D9        : output : 3.3-V LVTTL       :         : 3         : N              
 GND                          : D10       : gnd    :                   :         :           :                
-program_counter[0]           : D11       : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[5]  : D11       : output : 3.3-V LVTTL       :         : 3         : N              
 GND+                         : D12       :        :                   :         : 3         :                
 GND                          : D13       : gnd    :                   :         :           :                
 GND*                         : D14       :        :                   :         : 4         :                
@@ -203,17 +204,17 @@ GND*                         : D19       :        :                   :         
 GND*                         : D20       :        :                   :         : 5         :                
 GND*                         : D21       :        :                   :         : 5         :                
 GND*                         : D22       :        :                   :         : 5         :                
-program_counter[7]           : E1        : output : 3.3-V LVTTL       :         : 2         : N              
-register_A[1]                : E2        : output : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : E1        :        :                   :         : 2         :                
+GND*                         : E2        :        :                   :         : 2         :                
 GND*                         : E3        :        :                   :         : 2         :                
 GND*                         : E4        :        :                   :         : 2         :                
 VCCD_PLL3                    : E5        : power  :                   : 1.2V    :           :                
 VCCA_PLL3                    : E6        : power  :                   : 1.2V    :           :                
 GND*                         : E7        :        :                   :         : 3         :                
-register_A[8]                : E8        : output : 3.3-V LVTTL       :         : 3         : N              
-register_A[13]               : E9        : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[11] : E8        : output : 3.3-V LVTTL       :         : 3         : N              
+program_counter[3]           : E9        : output : 3.3-V LVTTL       :         : 3         : N              
 VCCIO3                       : E10       : power  :                   : 3.3V    : 3         :                
-program_counter[6]           : E11       : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[12] : E11       : output : 3.3-V LVTTL       :         : 3         : N              
 GND+                         : E12       :        :                   :         : 3         :                
 VCCIO4                       : E13       : power  :                   : 3.3V    : 4         :                
 GND*                         : E14       :        :                   :         : 4         :                
@@ -225,17 +226,17 @@ GND*                         : E19       :        :                   :         
 GND*                         : E20       :        :                   :         : 5         :                
 GND*                         : E21       :        :                   :         : 5         :                
 GND*                         : E22       :        :                   :         : 5         :                
-register_A[2]                : F1        : output : 3.3-V LVTTL       :         : 2         : N              
-register_A[0]                : F2        : output : 3.3-V LVTTL       :         : 2         : N              
-memory_data_register_out[14] : F3        : output : 3.3-V LVTTL       :         : 2         : N              
+instruction_register[1]      : F1        : output : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : F2        :        :                   :         : 2         :                
+GND*                         : F3        :        :                   :         : 2         :                
 GND*                         : F4        :        :                   :         : 2         :                
 GND_PLL3                     : F5        : gnd    :                   :         :           :                
 GND_PLL3                     : F6        : gnd    :                   :         :           :                
 GNDA_PLL3                    : F7        : gnd    :                   :         :           :                
-GND*                         : F8        :        :                   :         : 3         :                
-memory_data_register_out[10] : F9        : output : 3.3-V LVTTL       :         : 3         : N              
-register_A[6]                : F10       : output : 3.3-V LVTTL       :         : 3         : N              
-memory_data_register_out[7]  : F11       : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[14] : F8        : output : 3.3-V LVTTL       :         : 3         : N              
+register_out[3]              : F9        : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[0]  : F10       : output : 3.3-V LVTTL       :         : 3         : N              
+instruction_register[10]     : F11       : output : 3.3-V LVTTL       :         : 3         : N              
 GND*                         : F12       :        :                   :         : 4         :                
 GND*                         : F13       :        :                   :         : 4         :                
 GND*                         : F14       :        :                   :         : 4         :                
@@ -249,15 +250,15 @@ GND*                         : F21       :        :                   :         
 GND*                         : F22       :        :                   :         : 5         :                
 NC                           : G1        :        :                   :         :           :                
 NC                           : G2        :        :                   :         :           :                
-memory_data_register_out[3]  : G3        : output : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : G3        :        :                   :         : 2         :                
 GND                          : G4        : gnd    :                   :         :           :                
-register_A[14]               : G5        : output : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : G5        :        :                   :         : 2         :                
 GND*                         : G6        :        :                   :         : 2         :                
 GND*                         : G7        :        :                   :         : 3         :                
 GND*                         : G8        :        :                   :         : 3         :                
 VCCIO3                       : G9        : power  :                   : 3.3V    : 3         :                
 GND                          : G10       : gnd    :                   :         :           :                
-program_counter[4]           : G11       : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[15] : G11       : output : 3.3-V LVTTL       :         : 3         : N              
 GND*                         : G12       :        :                   :         : 4         :                
 GND                          : G13       : gnd    :                   :         :           :                
 VCCIO4                       : G14       : power  :                   : 3.3V    : 4         :                
@@ -269,17 +270,17 @@ VCCIO5                       : G19       : power  :                   : 3.3V    
 GND*                         : G20       :        :                   :         : 5         :                
 GND*                         : G21       :        :                   :         : 5         :                
 GND*                         : G22       :        :                   :         : 5         :                
-memory_data_register_out[11] : H1        : output : 3.3-V LVTTL       :         : 2         : N              
-instruction_register[10]     : H2        : output : 3.3-V LVTTL       :         : 2         : N              
-instruction_register[12]     : H3        : output : 3.3-V LVTTL       :         : 2         : N              
-memory_data_register_out[5]  : H4        : output : 3.3-V LVTTL       :         : 2         : N              
-memory_data_register_out[6]  : H5        : output : 3.3-V LVTTL       :         : 2         : N              
-instruction_register[2]      : H6        : output : 3.3-V LVTTL       :         : 2         : N              
+register_out[6]              : H1        : output : 3.3-V LVTTL       :         : 2         : N              
+program_counter[1]           : H2        : output : 3.3-V LVTTL       :         : 2         : N              
+register_out[2]              : H3        : output : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : H4        :        :                   :         : 2         :                
+GND*                         : H5        :        :                   :         : 2         :                
+GND*                         : H6        :        :                   :         : 2         :                
 GND*                         : H7        :        :                   :         : 3         :                
-instruction_register[13]     : H8        : output : 3.3-V LVTTL       :         : 3         : N              
-register_A[15]               : H9        : output : 3.3-V LVTTL       :         : 3         : N              
-register_A[4]                : H10       : output : 3.3-V LVTTL       :         : 3         : N              
-memory_data_register_out[0]  : H11       : output : 3.3-V LVTTL       :         : 3         : N              
+program_counter[0]           : H8        : output : 3.3-V LVTTL       :         : 3         : N              
+instruction_register[9]      : H9        : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[3]  : H10       : output : 3.3-V LVTTL       :         : 3         : N              
+memory_data_register_out[2]  : H11       : output : 3.3-V LVTTL       :         : 3         : N              
 GND*                         : H12       :        :                   :         : 4         :                
 GND*                         : H13       :        :                   :         : 4         :                
 GND*                         : H14       :        :                   :         : 4         :                
@@ -291,10 +292,10 @@ GND*                         : H19       :        :                   :         
 GND                          : H20       : gnd    :                   :         :           :                
 NC                           : H21       :        :                   :         :           :                
 NC                           : H22       :        :                   :         :           :                
-memory_data_register_out[12] : J1        : output : 3.3-V LVTTL       :         : 2         : N              
+instruction_register[0]      : J1        : output : 3.3-V LVTTL       :         : 2         : N              
 memory_data_register_out[8]  : J2        : output : 3.3-V LVTTL       :         : 2         : N              
 NC                           : J3        :        :                   :         :           :                
-register_A[10]               : J4        : output : 3.3-V LVTTL       :         : 2         : N              
+register_out[0]              : J4        : output : 3.3-V LVTTL       :         : 2         : N              
 NC                           : J5        :        :                   :         :           :                
 NC                           : J6        :        :                   :         :           :                
 VCCIO2                       : J7        : power  :                   : 3.3V    : 2         :                
@@ -342,7 +343,7 @@ nCONFIG                      : L4        :        :                   :         
 TDO                          : L5        : output :                   :         : 2         :                
 DCLK                         : L6        :        :                   :         : 2         :                
 NC                           : L7        :        :                   :         :           :                
-instruction_register[9]      : L8        : output : 3.3-V LVTTL       :         : 2         : N              
+program_counter[4]           : L8        : output : 3.3-V LVTTL       :         : 2         : N              
 VCCINT                       : L9        : power  :                   : 1.2V    :           :                
 GND                          : L10       : gnd    :                   :         :           :                
 GND                          : L11       : gnd    :                   :         :           :                
@@ -361,8 +362,8 @@ clock                        : M1        : input  : 3.3-V LVTTL       :         
 reset                        : M2        : input  : 3.3-V LVTTL       :         : 1         : N              
 VCCIO1                       : M3        : power  :                   : 3.3V    : 1         :                
 GND                          : M4        : gnd    :                   :         :           :                
-GND*                         : M5        :        :                   :         : 1         :                
-GND*                         : M6        :        :                   :         : 1         :                
+instruction_register[2]      : M5        : output : 3.3-V LVTTL       :         : 1         : N              
+program_counter[5]           : M6        : output : 3.3-V LVTTL       :         : 1         : N              
 NC                           : M7        :        :                   :         :           :                
 NC                           : M8        :        :                   :         :           :                
 VCCINT                       : M9        : power  :                   : 1.2V    :           :                
@@ -379,8 +380,8 @@ GND*                         : M19       :        :                   :         
 VCCIO6                       : M20       : power  :                   : 3.3V    : 6         :                
 GND+                         : M21       :        :                   :         : 6         :                
 GND+                         : M22       :        :                   :         : 6         :                
-instruction_register[15]     : N1        : output : 3.3-V LVTTL       :         : 1         : N              
-instruction_register[6]      : N2        : output : 3.3-V LVTTL       :         : 1         : N              
+instruction_register[3]      : N1        : output : 3.3-V LVTTL       :         : 1         : N              
+register_out[9]              : N2        : output : 3.3-V LVTTL       :         : 1         : N              
 GND*                         : N3        :        :                   :         : 1         :                
 GND*                         : N4        :        :                   :         : 1         :                
 NC                           : N5        :        :                   :         :           :                
@@ -431,9 +432,9 @@ GND*                         : R5        :        :                   :         
 GND*                         : R6        :        :                   :         : 1         :                
 GND*                         : R7        :        :                   :         : 1         :                
 GND*                         : R8        :        :                   :         : 1         :                
-GND*                         : R9        :        :                   :         : 8         :                
-GND*                         : R10       :        :                   :         : 8         :                
-instruction_register[1]      : R11       : output : 3.3-V LVTTL       :         : 8         : N              
+instruction_register[15]     : R9        : output : 3.3-V LVTTL       :         : 8         : N              
+instruction_register[13]     : R10       : output : 3.3-V LVTTL       :         : 8         : N              
+register_out[10]             : R11       : output : 3.3-V LVTTL       :         : 8         : N              
 GND*                         : R12       :        :                   :         : 7         :                
 GND*                         : R13       :        :                   :         : 7         :                
 GND*                         : R14       :        :                   :         : 7         :                
@@ -455,7 +456,7 @@ GND*                         : T7        :        :                   :         
 GND*                         : T8        :        :                   :         : 8         :                
 VCCIO8                       : T9        : power  :                   : 3.3V    : 8         :                
 GND                          : T10       : gnd    :                   :         :           :                
-GND*                         : T11       :        :                   :         : 8         :                
+register_out[8]              : T11       : output : 3.3-V LVTTL       :         : 8         : N              
 GND*                         : T12       :        :                   :         : 7         :                
 GND                          : T13       : gnd    :                   :         :           :                
 VCCIO7                       : T14       : power  :                   : 3.3V    : 7         :                
@@ -476,7 +477,7 @@ VCCD_PLL1                    : U6        : power  :                   : 1.2V    
 VCCA_PLL1                    : U7        : power  :                   : 1.2V    :           :                
 GND*                         : U8        :        :                   :         : 8         :                
 GND*                         : U9        :        :                   :         : 8         :                
-GND*                         : U10       :        :                   :         : 8         :                
+instruction_register[11]     : U10       : output : 3.3-V LVTTL       :         : 8         : N              
 GND+                         : U11       :        :                   :         : 8         :                
 GND+                         : U12       :        :                   :         : 8         :                
 GND*                         : U13       :        :                   :         : 7         :                
@@ -499,7 +500,7 @@ GNDA_PLL1                    : V7        : gnd    :                   :         
 GND*                         : V8        :        :                   :         : 8         :                
 GND*                         : V9        :        :                   :         : 8         :                
 VCCIO8                       : V10       : power  :                   : 3.3V    : 8         :                
-GND*                         : V11       :        :                   :         : 8         :                
+register_out[13]             : V11       : output : 3.3-V LVTTL       :         : 8         : N              
 GND+                         : V12       :        :                   :         : 7         :                
 VCCIO7                       : V13       : power  :                   : 3.3V    : 7         :                
 GND*                         : V14       :        :                   :         : 7         :                
@@ -521,7 +522,7 @@ GND*                         : W7        :        :                   :         
 GND*                         : W8        :        :                   :         : 8         :                
 GND*                         : W9        :        :                   :         : 8         :                
 GND                          : W10       : gnd    :                   :         :           :                
-program_counter[2]           : W11       : output : 3.3-V LVTTL       :         : 8         : N              
+register_out[15]             : W11       : output : 3.3-V LVTTL       :         : 8         : N              
 GND+                         : W12       :        :                   :         : 7         :                
 GND                          : W13       : gnd    :                   :         :           :                
 GND*                         : W14       :        :                   :         : 7         :                
@@ -542,7 +543,7 @@ GND*                         : Y6        :        :                   :         
 GND*                         : Y7        :        :                   :         : 8         :                
 GND                          : Y8        : gnd    :                   :         :           :                
 GND*                         : Y9        :        :                   :         : 8         :                
-instruction_register[11]     : Y10       : output : 3.3-V LVTTL       :         : 8         : N              
+instruction_register[6]      : Y10       : output : 3.3-V LVTTL       :         : 8         : N              
 VCCIO8                       : Y11       : power  :                   : 3.3V    : 8         :                
 VCCIO7                       : Y12       : power  :                   : 3.3V    : 7         :                
 GND*                         : Y13       :        :                   :         : 7         :                

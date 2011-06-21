@@ -1,0 +1,19 @@
+
+State Machine - |CPU16|state
+Name state.execute_addi state.execute_jzero state.execute_jpos state.execute_and state.execute_or state.execute_xor state.execute_subt state.execute_jneg state.execute_jump state.execute_load state.execute_store2 state.execute_store state.execute_add state.decode state.fetch state.reset_pc 
+state.reset_pc 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.fetch 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.decode 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.execute_add 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.execute_store 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.execute_store2 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.execute_load 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.execute_jump 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.execute_jneg 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.execute_subt 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.execute_xor 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.execute_or 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.execute_and 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.execute_jpos 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.execute_jzero 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.execute_addi 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
