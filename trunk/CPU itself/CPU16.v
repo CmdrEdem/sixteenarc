@@ -287,6 +287,37 @@ module CPU16 (
 								state = fetch;
 							end
 							
+						execute_shl:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = register_A * 2;
+									2'b01:
+										register_B = register_B * 2;
+									2'b10:
+										register_C = register_C * 2;
+									2'b11:
+										register_D = register_D * 2;
+								endcase
+								state = fetch;
+							end
+						
+						execute_shr:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = register_A / 2;
+									2'b01:
+										register_B = register_B / 2;
+									2'b10:
+										register_C = register_C / 2;
+									2'b11:
+										register_D = register_D / 2;
+								endcase
+								state = fetch;
+							end
+							
+					// -----------------------------------TODO----------------------------------------
 					//Instrucões de I/O --------------------------------------------------------------
 					/*	execute_in:
 							begin
@@ -315,8 +346,13 @@ module CPU16 (
 										io.out = register_D;
 								endcase
 								state = fetch;
-							end
+							end	
 					*/
+							
+						//execute_wait:
+						//execute_call:
+						//execute_return:
+					
 						default:
 							begin
 								state = fetch;
@@ -467,8 +503,13 @@ module CPU16 (
 					end
 					
 					execute_addi: program_address_register = program_counter;
+					execute_shl: program_address_register = program_counter;
+					execute_shr: program_address_register = program_counter;
 					//execute_in: program_address_register = program_counter;
 					//execute_out: program_address_register = program_counter;
+					//execute_wait:
+					//execute_call:
+					//execute_return:
 					
 					default: program_address_register = program_counter;
 					
