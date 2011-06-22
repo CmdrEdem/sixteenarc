@@ -1,5 +1,5 @@
 Analysis & Synthesis report for nios
-Wed Jun 15 12:03:24 2011
+Wed Jun 22 12:49:43 2011
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -108,7 +108,7 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +------------------------------------+----------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Jun 15 12:03:22 2011        ;
+; Analysis & Synthesis Status        ; Successful - Wed Jun 22 12:49:42 2011        ;
 ; Quartus II Version                 ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
 ; Revision Name                      ; nios                                         ;
 ; Top-level Entity Name              ; niosGRAF                                     ;
@@ -599,13 +599,6 @@ Encoding Type:  One-Hot
 ; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; No         ; |niosGRAF|nios_system:inst|cpu_0:the_cpu_0|W_wr_data[25]                                                                                                                                                              ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |niosGRAF|nios_system:inst|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|readdata[3]                                                                                                                            ;
 ; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |niosGRAF|nios_system:inst|cpu_0:the_cpu_0|D_dst_regnum[0]                                                                                                                                                            ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; Yes        ; |niosGRAF|sld_hub:auto_hub|irf_reg[2][4]                                                                                                                                                                              ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; Yes        ; |niosGRAF|sld_hub:auto_hub|irf_reg[1][0]                                                                                                                                                                              ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |niosGRAF|sld_hub:auto_hub|sld_rom_sr:hub_info_reg|word_counter[2]                                                                                                                                                    ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; Yes        ; |niosGRAF|sld_hub:auto_hub|shadow_irf_reg[2][3]                                                                                                                                                                       ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; Yes        ; |niosGRAF|sld_hub:auto_hub|shadow_irf_reg[1][2]                                                                                                                                                                       ;
-; 8:1                ; 5 bits    ; 25 LEs        ; 10 LEs               ; 15 LEs                 ; Yes        ; |niosGRAF|sld_hub:auto_hub|irsr_reg[2]                                                                                                                                                                                ;
-; 28:1               ; 4 bits    ; 72 LEs        ; 48 LEs               ; 24 LEs                 ; Yes        ; |niosGRAF|sld_hub:auto_hub|sld_rom_sr:hub_info_reg|WORD_SR[1]                                                                                                                                                         ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -2269,7 +2262,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Wed Jun 15 12:02:23 2011
+    Info: Processing started: Wed Jun 22 12:49:06 2011
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off nios -c nios
 Info: Found 1 design units, including 1 entities, in source file niosgraf.bdf
     Info: Found entity 1: niosGRAF
@@ -2400,7 +2393,6 @@ Info: Elaborating entity "cpu_0_nios2_oci_fifocount_inc" for hierarchy "nios_sys
 Warning: Using design file cpu_0_oci_test_bench.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info: Found entity 1: cpu_0_oci_test_bench
 Info: Elaborating entity "cpu_0_oci_test_bench" for hierarchy "nios_system:inst|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_nios2_oci_fifo:the_cpu_0_nios2_oci_fifo|cpu_0_oci_test_bench:the_cpu_0_oci_test_bench"
-Warning: Entity "cpu_0_oci_test_bench" contains only dangling pins
 Info: Elaborating entity "cpu_0_nios2_oci_pib" for hierarchy "nios_system:inst|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_nios2_oci_pib:the_cpu_0_nios2_oci_pib"
 Info: Elaborating entity "cpu_0_nios2_oci_im" for hierarchy "nios_system:inst|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_nios2_oci_im:the_cpu_0_nios2_oci_im"
 Info: Elaborating entity "cpu_0_traceram_lpm_dram_bdp_component_module" for hierarchy "nios_system:inst|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_nios2_oci_im:the_cpu_0_nios2_oci_im|cpu_0_traceram_lpm_dram_bdp_component_module:cpu_0_traceram_lpm_dram_bdp_component"
@@ -2645,8 +2637,6 @@ Info: 68 registers lost all their fanouts during netlist optimizations. The firs
     Info: Register "nios_system:inst|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_jtag_debug_module_wrapper:the_cpu_0_jtag_debug_module_wrapper|cpu_0_jtag_debug_module_tck:the_cpu_0_jtag_debug_module_tck|DRsize~4" lost all its fanouts during netlist optimizations.
     Info: Register "nios_system:inst|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_jtag_debug_module_wrapper:the_cpu_0_jtag_debug_module_wrapper|cpu_0_jtag_debug_module_tck:the_cpu_0_jtag_debug_module_tck|DRsize~5" lost all its fanouts during netlist optimizations.
     Info: Register "nios_system:inst|cpu_0:the_cpu_0|cpu_0_nios2_oci:the_cpu_0_nios2_oci|cpu_0_jtag_debug_module_wrapper:the_cpu_0_jtag_debug_module_wrapper|cpu_0_jtag_debug_module_tck:the_cpu_0_jtag_debug_module_tck|DRsize.101" lost all its fanouts during netlist optimizations.
-Info: Registers with preset signals will power-up high
-Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning: Ignored assignments for entity "nios" -- entity does not exist in design
     Warning: Assignment for entity set_global_assignment -name LL_ROOT_REGION ON -entity nios -section_id "Root Region" was ignored
     Warning: Assignment for entity set_global_assignment -name LL_MEMBER_STATE LOCKED -entity nios -section_id "Root Region" was ignored
@@ -2656,11 +2646,11 @@ Info: Implemented 1605 device resources after synthesis - the final resource cou
     Info: Implemented 9 output pins
     Info: Implemented 1470 logic cells
     Info: Implemented 112 RAM segments
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 54 warnings
-    Info: Peak virtual memory: 269 megabytes
-    Info: Processing ended: Wed Jun 15 12:03:27 2011
-    Info: Elapsed time: 00:01:04
-    Info: Total CPU time (on all processors): 00:00:17
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 53 warnings
+    Info: Peak virtual memory: 259 megabytes
+    Info: Processing ended: Wed Jun 22 12:49:47 2011
+    Info: Elapsed time: 00:00:41
+    Info: Total CPU time (on all processors): 00:00:14
 
 
 +------------------------------------------+

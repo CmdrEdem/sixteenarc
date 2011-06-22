@@ -2,7 +2,7 @@
 <nios2_config>
     <system>
         <system_ptf filepath="true">nios_system.ptf</system_ptf>
-        <system_sof filepath="true"/>
+        <system_sof filepath="true">nios.sof</system_sof>
         <cable>USB-Blaster [USB-0]</cable>
         <processor JTAGHubInstanceID="0">cpu_0</processor>
         <elf_section name="text">
@@ -16,14 +16,12 @@
         <terminal JTAGHubInstanceID="0">jtag_uart_0</terminal>
     </system>
     <program>
-        <type>C</type>
+        <type>ASSEMBLY</type>
         <options>
             <source_files>
-                <source_file filepath="true">nios.c</source_file>
+                <source_file filepath="true">fila.s</source_file>
             </source_files>
-            <compiler_flags>-O1 -ffunction-sections -fverbose-asm -fno-inline</compiler_flags>
-            <emulate_unimpl_instructions>true</emulate_unimpl_instructions>
-            <use_small_c_library>true</use_small_c_library>
+            <start_symbol>_start</start_symbol>
         </options>
     </program>
 </nios2_config>

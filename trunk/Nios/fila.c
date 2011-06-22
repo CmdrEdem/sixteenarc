@@ -1,8 +1,8 @@
-//#define sws (volatile char*) 0x00003000
-//#define LEDs (char*) 0x00003010
+#define sws (volatile char*) 0x00003000
+#define LEDs (char*) 0x00003010
 
-char sws;
-char LEDs;
+//char sws;
+//char LEDs;
 
 char fila[8];
 
@@ -29,7 +29,7 @@ void popElement()
 	}
 }
 
-void main()
+int main()
 {
 	int i = 0;
 	char mascara = 1;
@@ -38,13 +38,13 @@ void main()
 	while(1)
 	{
 		mascara = 1;
-		if((sws & mascara) != 0)
+		if((*sws & mascara) != 0)
 		{
-			if(estado == 0)
+			/*if(estado == 0)
 			{
-				estado = 1;
+				estado = 1;*/
 				mascara = 2;
-				if((sws & mascara) != 0)
+				if((*sws & mascara) != 0)
 				{
 					popElement();
 				}
@@ -52,7 +52,7 @@ void main()
 				{
 					pushElement();
 				}
-			}
+			//}
 		}
 		/*else
 		{
@@ -70,14 +70,15 @@ void main()
 				}
 			}
 		}*/
-		LEDs = 0;
+		*LEDs = 0;
 		for(i = 0; i<8; i++)
 		{
 			if(fila[i] == 'a')
 			{
-				LEDs++;
+				*LEDs = *LEDs + 1;
 			}
-			LEDs = LEDs << 1;
+			*LEDs = *LEDs << 1;
 		}
 	}
+	return 0
 }
