@@ -4,17 +4,25 @@ module CPU16 (
 				program_counter,
 				register_out,
 				memory_data_register_out,
-				instruction_register
+				instruction_register,
+				input_port,
+				output_port
 				 );	
 
 	input clock, reset;
+	input[15:0] input_port;
 	output [7:0] program_counter;
-	output [15:0] register_out, memory_data_register_out, instruction_register;
+	output [15:0] register_out, memory_data_register_out, instruction_register, output_port;
 
-	reg [15:0] register_A, register_B, register_C, register_D, instruction_register, register_out;
-	reg [7:0] program_counter;
-	reg [4:0] state;
-	reg [7:0] stack_pointer;
+	reg [15:0] instruction_register, register_out, output_port;
+	reg [15:0] register_A; 
+	reg [15:0] register_B;
+	reg [15:0] register_C;
+	reg [15:0] register_D;
+	reg [7:0]  program_counter;
+	reg [4:0]  state;
+	reg [7:0]  stack_pointer;
+	reg [7:0]  time_counter;
 	
 	reg[7:0] memory_address_register;
 	reg memory_write;
@@ -53,11 +61,16 @@ module CPU16 (
 				execute_in = 18,
 				execute_out = 19,
 				execute_wait = 20,
-				execute_call = 21,
-				execute_return = 22,
-				execute_push = 23,
-				execute_pop = 24,
-				execute_pop2 = 25;
+				execute_wait2 = 21,
+				execute_call = 22,
+				execute_return = 23,
+				execute_return2 = 24,
+				execute_push = 25,
+				execute_pop = 26,
+				execute_pop2 = 27,
+				execute_storeR = 28,
+				execute_loadR = 29,
+				execute_loadR2 = 30;
 	
 		//Memória de instruções
 		altsyncram	mem_instrucoes(
@@ -109,6 +122,7 @@ module CPU16 (
 								register_C = 16'h0000;
 								register_D = 16'h0000;
 								stack_pointer = 8'hFF;
+								time_counter = 8'h00;
 								state = fetch;
 							end
 							
@@ -164,11 +178,16 @@ module CPU16 (
 										state = execute_push;
 									6'b010100:
 										state = execute_pop;
+									6'b010101:
+										state = execute_storeR;
+									6'b010110:
+										state = execute_loadR;
 									default:
 										state = fetch;
 								endcase
 							end
-							
+						
+						// ADD --------------------------------------------------------------------------------------	
 						execute_add:
 							begin
 								case(instruction_register[9:8])
@@ -184,16 +203,19 @@ module CPU16 (
 								state = fetch;
 							end
 						
+						// STORE --------------------------------------------------------------------------------------
 						execute_store:
 							begin
 								state = execute_store2;
 							end
 						
+						//address-safe state
 						execute_store2:
 							begin
 								state = fetch;
 							end
 						
+						// LOAD --------------------------------------------------------------------------------------
 						execute_load:
 							begin
 								case(instruction_register[9:8])
@@ -209,18 +231,21 @@ module CPU16 (
 								state = fetch;
 							end
 						
+						// JUMP --------------------------------------------------------------------------------------
 						execute_jump:
 							begin
 								program_counter = program_address_register;
 								state = fetch;
 							end
-							
+						
+						// JNEG --------------------------------------------------------------------------------------	
 						execute_jneg:
 							begin
 								program_counter = program_address_register;
 								state = fetch;
 							end
-							
+						
+						// SUBT --------------------------------------------------------------------------------------	
 						execute_subt:
 							begin
 								case(instruction_register[9:8])
@@ -235,7 +260,8 @@ module CPU16 (
 								endcase
 								state = fetch;
 							end
-							
+						
+						// XOR --------------------------------------------------------------------------------------	
 						execute_xor:
 							begin
 								case(instruction_register[9:8])
@@ -250,7 +276,8 @@ module CPU16 (
 								endcase
 								state = fetch;
 							end
-							
+						
+						// OR --------------------------------------------------------------------------------------	
 						execute_or:
 							begin
 								case(instruction_register[9:8])
@@ -265,7 +292,8 @@ module CPU16 (
 								endcase
 								state = fetch;
 							end
-							
+						
+						// AND --------------------------------------------------------------------------------------	
 						execute_and:
 							begin
 								case(instruction_register[9:8])
@@ -281,18 +309,21 @@ module CPU16 (
 								state = fetch;
 							end
 							
+						// JPOS --------------------------------------------------------------------------------------
 						execute_jpos:
 							begin
 								program_counter = program_address_register;
 								state = fetch;
 							end
-							
+						
+						// JZERO ------------------------------------------------------------------------------------	
 						execute_jzero:
 							begin
 								program_counter = program_address_register;
 								state = fetch;
 							end
-							
+						
+						// ADDI -------------------------------------------------------------------------------------	
 						execute_addi:
 							begin
 								case(instruction_register[9:8])
@@ -307,7 +338,8 @@ module CPU16 (
 								endcase
 								state = fetch;
 							end
-							
+
+						// SHL --------------------------------------------------------------------------------------
 						execute_shl:
 							begin
 								case(instruction_register[9:8])
@@ -323,6 +355,7 @@ module CPU16 (
 								state = fetch;
 							end
 						
+						// SHR --------------------------------------------------------------------------------------
 						execute_shr:
 							begin
 								case(instruction_register[9:8])
@@ -338,41 +371,76 @@ module CPU16 (
 								state = fetch;
 							end
 							
-					// -----------------------------------TODO----------------------------------------
 					//Instrucões de I/O --------------------------------------------------------------
-					/*	execute_in:
+						execute_in:
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										register_A = io.in;
+										register_A = input_port;
 									2'b01:
-										register_B = io.in;
+										register_B = input_port;
 									2'b10:
-										register_C = io.in;
+										register_C = input_port;
 									2'b11:
-										register_D = io.in;
+										register_D = input_port;
 								endcase
 								state = fetch;
 							end
+							
 						execute_out:
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										io.out = register_A;
+										output_port = register_A;
 									2'b01:
-										io.out = register_B;
+										output_port = register_B;
 									2'b10:
-										io.out = register_C;
+										output_port = register_C;
 									2'b11:
-										io.out = register_D;
+										output_port = register_D;
 								endcase
 								state = fetch;
 							end	
-					*/
+					
 							
-						//execute_wait:
-						//execute_call:
-						//execute_return:
+						execute_wait:
+							begin
+								if(time_counter < 8'hFF)
+									begin
+										time_counter = time_counter + 1;
+										state = execute_wait2;
+									end
+								else
+									begin
+										time_counter = 8'h00;
+										state = fetch;
+									end
+							end
+							
+						execute_wait2:
+							begin
+								state = execute_wait;
+							end
+						
+						execute_call:
+							begin
+								program_counter = instruction_register[7:0];
+								stack_pointer = stack_pointer - 1;
+								state = execute_store2;
+							end
+							
+						execute_return:
+							begin
+								//Usa ciclo para ler da memória
+								state = execute_return2; 
+							end
+							
+						execute_return2:
+							begin
+								program_counter = memory_data_register;
+								stack_pointer = stack_pointer + 1;
+								state = fetch;
+							end
 						
 						execute_push:
 							begin	
@@ -396,11 +464,33 @@ module CPU16 (
 										register_C = memory_data_register;
 									2'b11:
 										register_D = memory_data_register;
+								endcase					
+								stack_pointer = stack_pointer + 1;
+								state = fetch;
+							end
+							
+						execute_storeR:
+							begin
+								state = execute_store2;
+							end
+						
+						execute_loadR:
+							begin
+								state = execute_loadR2;
+							end
+						
+						execute_loadR2:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = memory_data_register;
+									2'b01:
+										register_B = memory_data_register;
+									2'b10:
+										register_C = memory_data_register;
+									2'b11:
+										register_D = memory_data_register;
 								endcase
-								
-								if(stack_pointer != 8'hFF)										
-									stack_pointer = stack_pointer + 1;
-								
 								state = fetch;
 							end
 					
@@ -556,16 +646,27 @@ module CPU16 (
 					execute_addi: program_address_register = program_counter;
 					execute_shl: program_address_register = program_counter;
 					execute_shr: program_address_register = program_counter;
-					//execute_in: program_address_register = program_counter;
-					//execute_out: program_address_register = program_counter;
-					//execute_wait:
+					
+					// I/O ----------------------------------------------------------------------------------
+					execute_in: program_address_register = program_counter;
+					execute_out: program_address_register = program_counter;
+					
+					execute_wait: program_address_register = program_counter;
+					execute_wait2: program_address_register = program_counter;
+					
+					// CALL & RETURN ------------------------------------------------------------------------
 					execute_call: 
-					//execute_return:
+						begin
+							memory_address_register = stack_pointer;
+							register_out = program_counter; //Endereco de retorno
+						end
+					execute_return: memory_address_register = stack_pointer + 1;
+					execute_return2: memory_address_register = program_counter;
 					
 					// PUSH --------------------------------------------------------------------------------
 					execute_push: 
 						begin
-							memory_address_register = stack_pointer - 1;
+							memory_address_register = stack_pointer;
 							
 							case(instruction_register[9:8])
 								2'b00:
@@ -580,13 +681,54 @@ module CPU16 (
 						end
 					
 					// POP ---------------------------------------------------------------------------------
-					execute_pop: memory_address_register = stack_pointer;
+					execute_pop: memory_address_register = stack_pointer + 1;
 					execute_pop2: program_address_register = program_counter;
+					
+					// LOAD & STORE Reg Address ------------------------------------------------------------
+					execute_storeR:	
+						begin
+							case(instruction_register[9:8])
+								2'b00:
+									register_out = register_A;
+								2'b01:
+									register_out = register_B;
+								2'b10:
+									register_out = register_C;
+								2'b11:
+									register_out = register_D;
+							endcase
+							
+							case(instruction_register[1:0])
+								2'b00:
+									memory_address_register = register_A;
+								2'b01:
+									memory_address_register = register_B;
+								2'b10:
+									memory_address_register = register_C;
+								2'b11:
+									memory_address_register = register_D;
+							endcase
+						end
+					
+					execute_loadR:
+						begin
+							case(instruction_register[1:0])
+								2'b00:
+									memory_address_register = register_A;
+								2'b01:
+									memory_address_register = register_B;
+								2'b10:
+									memory_address_register = register_C;
+								2'b11:
+									memory_address_register = register_D;
+							endcase
+						end
+						
+					execute_loadR2: program_address_register = program_counter;
 					
 					default: program_address_register = program_counter;
 					
 				endcase
-				
 				
 				case(state)
 					execute_store:
@@ -594,14 +736,18 @@ module CPU16 (
 						
 					execute_push:
 						memory_write = 1'b1;
+						
+					execute_call:
+						memory_write = 1'b1;
+					
+					execute_storeR:
+						memory_write = 1'b1;
 					
 					default:
-						begin
-							memory_write = 1'b0;
-							program_write = 1'b0;
-						end
-						
+						memory_write = 1'b0;
 				endcase
+				
+				program_write = 1'b0;
 				
 			end
 endmodule
