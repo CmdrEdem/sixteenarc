@@ -11,25 +11,26 @@ module CPU16 (
 	output [7:0] program_counter;
 	output [15:0] register_out, memory_data_register_out, instruction_register;
 
-	reg[15:0] register_A, register_B, register_C, register_D, instruction_register, register_out;
+	reg [15:0] register_A, register_B, register_C, register_D, instruction_register, register_out;
 	reg [7:0] program_counter;
 	reg [4:0] state;
+	reg [7:0] stack_pointer;
 	
 	reg[7:0] memory_address_register;
 	reg memory_write;
 
 	wire[15:0] memory_data_register;
 	wire[15:0] memory_data_register_out = memory_data_register;
-	wire[15:0] memory_address_register_out = memory_address_register;
-	wire[15:0] memory_write_out = memory_write;
+	wire[7:0]  memory_address_register_out = memory_address_register;
+	wire 	   memory_write_out = memory_write;
 	
 	reg[7:0] program_address_register;
 	reg program_write;
 
 	wire[15:0] program_data_register;
 	wire[15:0] program_data_register_out = program_data_register;
-	wire[15:0] program_address_register_out = program_address_register;
-	wire[15:0] program_write_out = program_write;
+	wire[7:0]  program_address_register_out = program_address_register;
+	wire	   program_write_out = program_write;
 
 	parameter 	reset_pc = 0,
 				fetch = 1,
@@ -53,7 +54,10 @@ module CPU16 (
 				execute_out = 19,
 				execute_wait = 20,
 				execute_call = 21,
-				execute_return = 22;
+				execute_return = 22,
+				execute_push = 23,
+				execute_pop = 24,
+				execute_pop2 = 25;
 	
 		//Memória de instruções
 		altsyncram	mem_instrucoes(
@@ -99,11 +103,12 @@ module CPU16 (
 					case(state)
 						reset_pc:
 							begin
-								program_counter = 8'b00000000;
-								register_A = 16'b0000000000000000;
-								register_B = 16'b0000000000000000;
-								register_C = 16'b0000000000000000;
-								register_D = 16'b0000000000000000;
+								program_counter = 8'h00;
+								register_A = 16'h0000;
+								register_B = 16'h0000;
+								register_C = 16'h0000;
+								register_D = 16'h0000;
+								stack_pointer = 8'hFF;
 								state = fetch;
 							end
 							
@@ -141,6 +146,24 @@ module CPU16 (
 										state = execute_jzero;
 									6'b001011:
 										state = execute_addi;
+									6'b001100:
+										state = execute_shl;
+									6'b001101:
+										state = execute_shr;
+									6'b001110:
+										state = execute_in;
+									6'b001111:
+										state = execute_out;
+									6'b010000:
+										state = execute_wait;
+									6'b010001:
+										state = execute_call;
+									6'b010010:
+										state = execute_return;
+									6'b010011:
+										state = execute_push;
+									6'b010100:
+										state = execute_pop;
 									default:
 										state = fetch;
 								endcase
@@ -150,13 +173,13 @@ module CPU16 (
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										register_A = register_A + memory_data_register;
+										register_A = register_A + instruction_register[7:0];
 									2'b01:
-										register_B = register_B + memory_data_register;
+										register_B = register_B + instruction_register[7:0];
 									2'b10:
-										register_C = register_C + memory_data_register;
+										register_C = register_C + instruction_register[7:0];
 									2'b11:
-										register_D = register_D + memory_data_register;
+										register_D = register_D + instruction_register[7:0];
 								endcase
 								state = fetch;
 							end
@@ -188,14 +211,12 @@ module CPU16 (
 						
 						execute_jump:
 							begin
-									program_counter = program_address_register;
-									state = fetch;
+								program_counter = program_address_register;
+								state = fetch;
 							end
 							
 						execute_jneg:
 							begin
-								//O registrador selecionado já foi testado e o endereco correto
-								//em program_address_register	
 								program_counter = program_address_register;
 								state = fetch;
 							end
@@ -204,13 +225,13 @@ module CPU16 (
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										register_A = register_A - memory_data_register;
+										register_A = register_A - instruction_register[7:0];
 									2'b01:
-										register_B = register_B - memory_data_register;
+										register_B = register_B - instruction_register[7:0];
 									2'b10:
-										register_C = register_C - memory_data_register;
+										register_C = register_C - instruction_register[7:0];
 									2'b11:
-										register_D = register_D - memory_data_register;
+										register_D = register_D - instruction_register[7:0];
 								endcase
 								state = fetch;
 							end
@@ -219,13 +240,13 @@ module CPU16 (
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										register_A = register_A ^ memory_data_register;
+										register_A = register_A ^ instruction_register[7:0];
 									2'b01:
-										register_B = register_B ^ memory_data_register;
+										register_B = register_B ^ instruction_register[7:0];
 									2'b10:
-										register_C = register_C ^ memory_data_register;
+										register_C = register_C ^ instruction_register[7:0];
 									2'b11:
-										register_D = register_D ^ memory_data_register;
+										register_D = register_D ^ instruction_register[7:0];
 								endcase
 								state = fetch;
 							end
@@ -234,13 +255,13 @@ module CPU16 (
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										register_A = register_A | memory_data_register;
+										register_A = register_A | instruction_register[7:0];
 									2'b01:
-										register_B = register_B | memory_data_register;
+										register_B = register_B | instruction_register[7:0];
 									2'b10:
-										register_C = register_C | memory_data_register;
+										register_C = register_C | instruction_register[7:0];
 									2'b11:
-										register_D = register_D | memory_data_register;
+										register_D = register_D | instruction_register[7:0];
 								endcase
 								state = fetch;
 							end
@@ -249,13 +270,13 @@ module CPU16 (
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										register_A = register_A & memory_data_register;
+										register_A = register_A & instruction_register[7:0];
 									2'b01:
-										register_B = register_B & memory_data_register;
+										register_B = register_B & instruction_register[7:0];
 									2'b10:
-										register_C = register_C & memory_data_register;
+										register_C = register_C & instruction_register[7:0];
 									2'b11:
-										register_D = register_D & memory_data_register;
+										register_D = register_D & instruction_register[7:0];
 								endcase
 								state = fetch;
 							end
@@ -276,13 +297,13 @@ module CPU16 (
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										register_A = register_A | memory_data_register;
+										register_A = register_A + instruction_register[7:0];
 									2'b01:
-										register_B = register_B | memory_data_register;
+										register_B = register_B + instruction_register[7:0];
 									2'b10:
-										register_C = register_C | memory_data_register;
+										register_C = register_C + instruction_register[7:0];
 									2'b11:
-										register_D = register_D | memory_data_register;
+										register_D = register_D + instruction_register[7:0];
 								endcase
 								state = fetch;
 							end
@@ -291,13 +312,13 @@ module CPU16 (
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										register_A = register_A * 2;
+										register_A = register_A << instruction_register[7:0];
 									2'b01:
-										register_B = register_B * 2;
+										register_B = register_B << instruction_register[7:0];
 									2'b10:
-										register_C = register_C * 2;
+										register_C = register_C << instruction_register[7:0];
 									2'b11:
-										register_D = register_D * 2;
+										register_D = register_D << instruction_register[7:0];
 								endcase
 								state = fetch;
 							end
@@ -306,30 +327,30 @@ module CPU16 (
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										register_A = register_A / 2;
+										register_A = register_A >> instruction_register[7:0];
 									2'b01:
-										register_B = register_B / 2;
+										register_B = register_B >> instruction_register[7:0];
 									2'b10:
-										register_C = register_C / 2;
+										register_C = register_C >> instruction_register[7:0];
 									2'b11:
-										register_D = register_D / 2;
+										register_D = register_D >> instruction_register[7:0];
 								endcase
 								state = fetch;
 							end
 							
 					// -----------------------------------TODO----------------------------------------
 					//Instrucões de I/O --------------------------------------------------------------
-						execute_in:
+					/*	execute_in:
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										//register_A = io.in;
+										register_A = io.in;
 									2'b01:
-										//register_B = io.in;
+										register_B = io.in;
 									2'b10:
-										//register_C = io.in;
+										register_C = io.in;
 									2'b11:
-										//register_D = io.in;
+										register_D = io.in;
 								endcase
 								state = fetch;
 							end
@@ -337,20 +358,51 @@ module CPU16 (
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										//io.out = register_A;
+										io.out = register_A;
 									2'b01:
-										//io.out = register_B;
+										io.out = register_B;
 									2'b10:
-										//io.out = register_C;
+										io.out = register_C;
 									2'b11:
-										//io.out = register_D;
+										io.out = register_D;
 								endcase
 								state = fetch;
-							end
+							end	
+					*/
 							
 						//execute_wait:
 						//execute_call:
 						//execute_return:
+						
+						execute_push:
+							begin	
+								stack_pointer = stack_pointer - 1;
+								state = execute_store2;
+							end
+							
+						execute_pop:
+							begin
+								state = execute_pop2;
+							end
+							
+						execute_pop2:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = memory_data_register;
+									2'b01:
+										register_B = memory_data_register;
+									2'b10:
+										register_C = memory_data_register;
+									2'b11:
+										register_D = memory_data_register;
+								endcase
+								
+								if(stack_pointer != 8'hFF)										
+									stack_pointer = stack_pointer + 1;
+								
+								state = fetch;
+							end
 					
 						default:
 							begin
@@ -507,8 +559,29 @@ module CPU16 (
 					//execute_in: program_address_register = program_counter;
 					//execute_out: program_address_register = program_counter;
 					//execute_wait:
-					//execute_call:
+					execute_call: 
 					//execute_return:
+					
+					// PUSH --------------------------------------------------------------------------------
+					execute_push: 
+						begin
+							memory_address_register = stack_pointer - 1;
+							
+							case(instruction_register[9:8])
+								2'b00:
+									register_out = register_A;
+								2'b01:
+									register_out = register_B;
+								2'b10:
+									register_out = register_C;
+								2'b11:
+									register_out = register_D;
+							endcase
+						end
+					
+					// POP ---------------------------------------------------------------------------------
+					execute_pop: memory_address_register = stack_pointer;
+					execute_pop2: program_address_register = program_counter;
 					
 					default: program_address_register = program_counter;
 					
@@ -516,7 +589,10 @@ module CPU16 (
 				
 				
 				case(state)
-					execute_store: 
+					execute_store:
+						memory_write = 1'b1;
+						
+					execute_push:
 						memory_write = 1'b1;
 					
 					default:
