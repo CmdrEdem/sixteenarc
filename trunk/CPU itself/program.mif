@@ -1,4 +1,4 @@
--- Copyright (C) 1991-2009 Altera Corporation
+-- Copyright (C) 1991-2010 Altera Corporation
 -- Your use of Altera Corporation's design tools, logic functions 
 -- and other software and tools, and its AMPP partner logic 
 -- functions, and any output files from any of the foregoing 
@@ -22,8 +22,7 @@ DATA_RADIX=BIN;
 
 CONTENT BEGIN
 	000  :   0000100100010001;
-	001  :   0100110100000000;
-	002  :   0101000000000000;
-	003  :   0010100000000000;
+	[001..002]  :   0100110100000000;
+	003  :   0101000000000000;
 	[004..0FF]  :   0000000000000000;
 END;
