@@ -1,4 +1,4 @@
-module CPU16 (
+module CPU16_Fibo (
 				clock,
 				reset,
 				program_counter,
@@ -89,7 +89,7 @@ module CPU16 (
 			mem_instrucoes.widthad_a = 8,
 			mem_instrucoes.outdata_reg_a = "UNREGISTERED",
 			mem_instrucoes.lpm_type = "altsyncram",
-			mem_instrucoes.init_file = "program.mif",
+			mem_instrucoes.init_file = "fibonacci.mif",
 			mem_instrucoes.intended_device_family = "Cyclone";
 	
 		//Memória de dados

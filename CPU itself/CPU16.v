@@ -19,8 +19,9 @@ module CPU16 (
 	reg [15:0] register_B;
 	reg [15:0] register_C;
 	reg [15:0] register_D;
+	reg [15:0]  adder_aux;
 	reg [7:0]  program_counter;
-	reg [4:0]  state;
+	reg [6:0]  state;
 	reg [7:0]  stack_pointer;
 	reg [7:0]  time_counter;
 	
@@ -70,7 +71,10 @@ module CPU16 (
 				execute_pop2 = 27,
 				execute_storeR = 28,
 				execute_loadR = 29,
-				execute_loadR2 = 30;
+				execute_loadR2 = 30,
+				execute_addR = 31,
+				execute_mov = 32,
+				execute_movi = 33;
 	
 		//Memória de instruções
 		altsyncram	mem_instrucoes(
@@ -182,6 +186,8 @@ module CPU16 (
 										state = execute_storeR;
 									6'b010110:
 										state = execute_loadR;
+									6'b010111:
+										state = execute_addR;
 									default:
 										state = fetch;
 								endcase
@@ -192,13 +198,13 @@ module CPU16 (
 							begin
 								case(instruction_register[9:8])
 									2'b00:
-										register_A = register_A + instruction_register[7:0];
+										register_A = register_A + memory_data_register;
 									2'b01:
-										register_B = register_B + instruction_register[7:0];
+										register_B = register_B + memory_data_register;
 									2'b10:
-										register_C = register_C + instruction_register[7:0];
+										register_C = register_C + memory_data_register;
 									2'b11:
-										register_D = register_D + instruction_register[7:0];
+										register_D = register_D + memory_data_register;
 								endcase
 								state = fetch;
 							end
@@ -493,6 +499,51 @@ module CPU16 (
 								endcase
 								state = fetch;
 							end
+							
+						execute_addR:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = register_A + adder_aux;
+									2'b01:
+										register_B = register_B + adder_aux;
+									2'b10:
+										register_C = register_C + adder_aux;
+									2'b11:
+										register_D = register_D + adder_aux;
+								endcase
+								state = fetch;
+							end
+							
+						execute_mov:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = adder_aux;
+									2'b01:
+										register_B = adder_aux;
+									2'b10:
+										register_C = adder_aux;
+									2'b11:
+										register_D = adder_aux;
+								endcase
+								state = fetch;
+							end
+							
+						execute_movi:
+							begin
+								case(instruction_register[9:8])
+									2'b00:
+										register_A = instruction_register[7:0];
+									2'b01:
+										register_B = instruction_register[7:0];
+									2'b10:
+										register_C = instruction_register[7:0];
+									2'b11:
+										register_D = instruction_register[7:0];
+								endcase
+								state = fetch;
+							end
 					
 						default:
 							begin
@@ -725,6 +776,38 @@ module CPU16 (
 						end
 						
 					execute_loadR2: program_address_register = program_counter;
+					
+					execute_addR: 
+						begin
+							case(instruction_register[1:0])
+								2'b00:
+									adder_aux = register_A;
+								2'b01:
+									adder_aux = register_B;
+								2'b10:
+									adder_aux = register_C;
+								2'b11:
+									adder_aux = register_D;
+							endcase
+							program_address_register = program_counter;
+						end
+						
+					execute_mov:
+						begin
+							case(instruction_register[1:0])
+								2'b00:
+									adder_aux = register_A;
+								2'b01:
+									adder_aux = register_B;
+								2'b10:
+									adder_aux = register_C;
+								2'b11:
+									adder_aux = register_D;
+							endcase
+							program_address_register = program_counter;
+						end
+					
+					execute_movi: program_address_register = program_counter;
 					
 					default: program_address_register = program_counter;
 					
