@@ -4,7 +4,7 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 1991-2009 Altera Corporation
+Copyright (C) 1991-2010 Altera Corporation
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
@@ -484,114 +484,6 @@ applicable agreement for further details.
 		(line (pt 88 64)(pt 88 16)(line_width 1))
 	)
 )
-(symbol
-	(rect 1064 112 1168 192)
-	(text "7456" (rect 39 0 72 16)(font "Arial" (font_size 10)))
-	(text "inst8" (rect 3 69 26 81)(font "Arial" ))
-	(port
-		(pt 0 56)
-		(input)
-		(text "CLKB" (rect 19 49 50 63)(font "Arial" (font_size 8)))
-		(text "CLKB" (rect 19 49 50 63)(font "Arial" (font_size 8)))
-		(line (pt 0 56)(pt 16 56)(line_width 1))
-	)
-	(port
-		(pt 0 24)
-		(input)
-		(text "CLR" (rect 19 17 42 31)(font "Arial" (font_size 8)))
-		(text "CLR" (rect 19 17 42 31)(font "Arial" (font_size 8)))
-		(line (pt 0 24)(pt 16 24)(line_width 1))
-	)
-	(port
-		(pt 0 40)
-		(input)
-		(text "CLKA" (rect 19 33 52 47)(font "Arial" (font_size 8)))
-		(text "CLKA" (rect 19 33 52 47)(font "Arial" (font_size 8)))
-		(line (pt 0 40)(pt 16 40)(line_width 1))
-	)
-	(port
-		(pt 104 56)
-		(output)
-		(text "QC" (rect 69 49 86 63)(font "Arial" (font_size 8)))
-		(text "QC" (rect 69 49 86 63)(font "Arial" (font_size 8)))
-		(line (pt 88 56)(pt 104 56)(line_width 1))
-	)
-	(port
-		(pt 104 24)
-		(output)
-		(text "QA" (rect 69 17 87 31)(font "Arial" (font_size 8)))
-		(text "QA" (rect 69 17 87 31)(font "Arial" (font_size 8)))
-		(line (pt 88 24)(pt 104 24)(line_width 1))
-	)
-	(port
-		(pt 104 40)
-		(output)
-		(text "QB" (rect 69 33 86 47)(font "Arial" (font_size 8)))
-		(text "QB" (rect 69 33 86 47)(font "Arial" (font_size 8)))
-		(line (pt 88 40)(pt 104 40)(line_width 1))
-	)
-	(drawing
-		(text "FREQ DIVIDER" (rect 20 65 101 79)(font "Arial" (font_size 8)))
-		(line (pt 16 16)(pt 88 16)(line_width 1))
-		(line (pt 16 64)(pt 88 64)(line_width 1))
-		(line (pt 16 64)(pt 16 16)(line_width 1))
-		(line (pt 88 64)(pt 88 16)(line_width 1))
-	)
-)
-(symbol
-	(rect 1184 96 1288 176)
-	(text "7456" (rect 39 0 72 16)(font "Arial" (font_size 10)))
-	(text "inst9" (rect 3 69 26 81)(font "Arial" ))
-	(port
-		(pt 0 56)
-		(input)
-		(text "CLKB" (rect 19 49 50 63)(font "Arial" (font_size 8)))
-		(text "CLKB" (rect 19 49 50 63)(font "Arial" (font_size 8)))
-		(line (pt 0 56)(pt 16 56)(line_width 1))
-	)
-	(port
-		(pt 0 24)
-		(input)
-		(text "CLR" (rect 19 17 42 31)(font "Arial" (font_size 8)))
-		(text "CLR" (rect 19 17 42 31)(font "Arial" (font_size 8)))
-		(line (pt 0 24)(pt 16 24)(line_width 1))
-	)
-	(port
-		(pt 0 40)
-		(input)
-		(text "CLKA" (rect 19 33 52 47)(font "Arial" (font_size 8)))
-		(text "CLKA" (rect 19 33 52 47)(font "Arial" (font_size 8)))
-		(line (pt 0 40)(pt 16 40)(line_width 1))
-	)
-	(port
-		(pt 104 56)
-		(output)
-		(text "QC" (rect 69 49 86 63)(font "Arial" (font_size 8)))
-		(text "QC" (rect 69 49 86 63)(font "Arial" (font_size 8)))
-		(line (pt 88 56)(pt 104 56)(line_width 1))
-	)
-	(port
-		(pt 104 24)
-		(output)
-		(text "QA" (rect 69 17 87 31)(font "Arial" (font_size 8)))
-		(text "QA" (rect 69 17 87 31)(font "Arial" (font_size 8)))
-		(line (pt 88 24)(pt 104 24)(line_width 1))
-	)
-	(port
-		(pt 104 40)
-		(output)
-		(text "QB" (rect 69 33 86 47)(font "Arial" (font_size 8)))
-		(text "QB" (rect 69 33 86 47)(font "Arial" (font_size 8)))
-		(line (pt 88 40)(pt 104 40)(line_width 1))
-	)
-	(drawing
-		(text "FREQ DIVIDER" (rect 20 65 101 79)(font "Arial" (font_size 8)))
-		(line (pt 16 16)(pt 88 16)(line_width 1))
-		(line (pt 16 64)(pt 88 64)(line_width 1))
-		(line (pt 16 64)(pt 16 16)(line_width 1))
-		(line (pt 88 64)(pt 88 16)(line_width 1))
-	)
-)
 (connector
 	(pt 192 264)
 	(pt 208 264)
@@ -621,18 +513,18 @@ applicable agreement for further details.
 	(pt 944 168)
 )
 (connector
-	(pt 1048 152)
-	(pt 1064 152)
-)
-(connector
-	(pt 1168 136)
-	(pt 1184 136)
-)
-(connector
-	(pt 1344 120)
-	(pt 1288 120)
-)
-(connector
 	(pt 40 280)
 	(pt 88 280)
+)
+(connector
+	(pt 1320 120)
+	(pt 1344 120)
+)
+(connector
+	(pt 1320 152)
+	(pt 1048 152)
+)
+(connector
+	(pt 1320 152)
+	(pt 1320 120)
 )

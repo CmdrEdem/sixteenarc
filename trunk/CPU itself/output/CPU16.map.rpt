@@ -1,0 +1,907 @@
+Analysis & Synthesis report for CPU16
+Wed Jun 29 12:52:05 2011
+Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |fibo_circ|CPU16_Fibo:inst|state
+ 10. User-Specified and Inferred Latches
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Source assignments for CPU16_Fibo:inst|altsyncram:mem_instrucoes|altsyncram_8js:auto_generated
+ 15. Source assignments for CPU16_Fibo:inst|altsyncram:mem_dados|altsyncram_0os:auto_generated
+ 16. Source assignments for ct:inst6|lpm_counter:lpm_counter_component
+ 17. Parameter Settings for User Entity Instance: CPU16_Fibo:inst
+ 18. Parameter Settings for User Entity Instance: CPU16_Fibo:inst|altsyncram:mem_instrucoes
+ 19. Parameter Settings for User Entity Instance: CPU16_Fibo:inst|altsyncram:mem_dados
+ 20. Parameter Settings for User Entity Instance: ct:inst6|lpm_counter:lpm_counter_component
+ 21. altsyncram Parameter Settings by Entity Instance
+ 22. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                      ;
++------------------------------------+----------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Jun 29 12:52:04 2011        ;
+; Quartus II Version                 ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
+; Revision Name                      ; CPU16                                        ;
+; Top-level Entity Name              ; fibo_circ                                    ;
+; Family                             ; Cyclone II                                   ;
+; Total logic elements               ; 1,516                                        ;
+;     Total combinational functions  ; 1,495                                        ;
+;     Dedicated logic registers      ; 172                                          ;
+; Total registers                    ; 172                                          ;
+; Total pins                         ; 30                                           ;
+; Total virtual pins                 ; 0                                            ;
+; Total memory bits                  ; 8,192                                        ;
+; Embedded Multiplier 9-bit elements ; 0                                            ;
+; Total PLLs                         ; 0                                            ;
++------------------------------------+----------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C20F484C7       ;                    ;
+; Top-level entity name                                                      ; fibo_circ          ; CPU16              ;
+; Family name                                                                ; Cyclone II         ; Stratix II         ;
+; Use Generated Physical Constraints File                                    ; Off                ;                    ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Show Parameter Settings Tables in Synthesis Report                         ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 2      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                    ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                    ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------+
+; data.mif                         ; yes             ; User Memory Initialization File    ; E:/labArq1/CPU16g/trunk/CPU itself/data.mif                     ;
+; fibonacci.mif                    ; yes             ; User Memory Initialization File    ; E:/labArq1/CPU16g/trunk/CPU itself/fibonacci.mif                ;
+; CPU16_Fibo.v                     ; yes             ; User Verilog HDL File              ; E:/labArq1/CPU16g/trunk/CPU itself/CPU16_Fibo.v                 ;
+; fibo_circ.bdf                    ; yes             ; User Block Diagram/Schematic File  ; E:/labArq1/CPU16g/trunk/CPU itself/fibo_circ.bdf                ;
+; ../Nios/ct.v                     ; yes             ; User Wizard-Generated File         ; E:/labArq1/CPU16g/trunk/Nios/ct.v                               ;
+; 7449.bdf                         ; yes             ; Megafunction                       ; c:/altera/91sp2/quartus/libraries/others/maxplus2/7449.bdf      ;
+; altsyncram.tdf                   ; yes             ; Megafunction                       ; c:/altera/91sp2/quartus/libraries/megafunctions/altsyncram.tdf  ;
+; db/altsyncram_8js.tdf            ; yes             ; Auto-Generated Megafunction        ; E:/labArq1/CPU16g/trunk/CPU itself/db/altsyncram_8js.tdf        ;
+; db/altsyncram_0os.tdf            ; yes             ; Auto-Generated Megafunction        ; E:/labArq1/CPU16g/trunk/CPU itself/db/altsyncram_0os.tdf        ;
+; lpm_counter.tdf                  ; yes             ; Megafunction                       ; c:/altera/91sp2/quartus/libraries/megafunctions/lpm_counter.tdf ;
+; db/cntr_8mh.tdf                  ; yes             ; Auto-Generated Megafunction        ; E:/labArq1/CPU16g/trunk/CPU itself/db/cntr_8mh.tdf              ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                                                 ;
++---------------------------------------------+-------------------------------------------------------------------------------+
+; Resource                                    ; Usage                                                                         ;
++---------------------------------------------+-------------------------------------------------------------------------------+
+; Estimated Total logic elements              ; 1,516                                                                         ;
+;                                             ;                                                                               ;
+; Total combinational functions               ; 1495                                                                          ;
+; Logic element usage by number of LUT inputs ;                                                                               ;
+;     -- 4 input functions                    ; 850                                                                           ;
+;     -- 3 input functions                    ; 482                                                                           ;
+;     -- <=2 input functions                  ; 163                                                                           ;
+;                                             ;                                                                               ;
+; Logic elements by mode                      ;                                                                               ;
+;     -- normal mode                          ; 1200                                                                          ;
+;     -- arithmetic mode                      ; 295                                                                           ;
+;                                             ;                                                                               ;
+; Total registers                             ; 172                                                                           ;
+;     -- Dedicated logic registers            ; 172                                                                           ;
+;     -- I/O registers                        ; 0                                                                             ;
+;                                             ;                                                                               ;
+; I/O pins                                    ; 30                                                                            ;
+; Total memory bits                           ; 8192                                                                          ;
+; Maximum fan-out node                        ; ct:inst6|lpm_counter:lpm_counter_component|cntr_8mh:auto_generated|safe_q[20] ;
+; Maximum fan-out                             ; 184                                                                           ;
+; Total fan-out                               ; 6026                                                                          ;
+; Average fan-out                             ; 3.49                                                                          ;
++---------------------------------------------+-------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                       ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                ; Library Name ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------+--------------+
+; |fibo_circ                                ; 1495 (0)          ; 172 (0)      ; 8192        ; 0            ; 0       ; 0         ; 30   ; 0            ; |fibo_circ                                                                         ; work         ;
+;    |7449:inst1|                           ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|7449:inst1                                                              ;              ;
+;    |7449:inst2|                           ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|7449:inst2                                                              ;              ;
+;    |7449:inst3|                           ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|7449:inst3                                                              ;              ;
+;    |7449:inst4|                           ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|7449:inst4                                                              ;              ;
+;    |CPU16_Fibo:inst|                      ; 1446 (1446)       ; 151 (151)    ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|CPU16_Fibo:inst                                                         ;              ;
+;       |altsyncram:mem_dados|              ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|CPU16_Fibo:inst|altsyncram:mem_dados                                    ;              ;
+;          |altsyncram_0os:auto_generated|  ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|CPU16_Fibo:inst|altsyncram:mem_dados|altsyncram_0os:auto_generated      ;              ;
+;       |altsyncram:mem_instrucoes|         ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|CPU16_Fibo:inst|altsyncram:mem_instrucoes                               ;              ;
+;          |altsyncram_8js:auto_generated|  ; 0 (0)             ; 0 (0)        ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|CPU16_Fibo:inst|altsyncram:mem_instrucoes|altsyncram_8js:auto_generated ;              ;
+;    |ct:inst6|                             ; 21 (0)            ; 21 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|ct:inst6                                                                ;              ;
+;       |lpm_counter:lpm_counter_component| ; 21 (0)            ; 21 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|ct:inst6|lpm_counter:lpm_counter_component                              ;              ;
+;          |cntr_8mh:auto_generated|        ; 21 (21)           ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fibo_circ|ct:inst6|lpm_counter:lpm_counter_component|cntr_8mh:auto_generated      ;              ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                           ;
++------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+---------------+
+; Name                                                                               ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF           ;
++------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+---------------+
+; CPU16_Fibo:inst|altsyncram:mem_dados|altsyncram_0os:auto_generated|ALTSYNCRAM      ; AUTO ; Single Port ; 256          ; 16           ; --           ; --           ; 4096 ; data.mif      ;
+; CPU16_Fibo:inst|altsyncram:mem_instrucoes|altsyncram_8js:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 256          ; 16           ; --           ; --           ; 4096 ; fibonacci.mif ;
++------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+---------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |fibo_circ|CPU16_Fibo:inst|state                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ;
++-----------------------+--------------------+----------------------+---------------------+----------------------+--------------------+-------------------+--------------------+-----------------------+----------------------+--------------------+---------------------+--------------------+-------------------+------------------+-------------------+-------------------+--------------------+---------------------+--------------------+-------------------+------------------+-------------------+--------------------+--------------------+--------------------+--------------------+----------------------+---------------------+-------------------+--------------+-------------+----------------+
+; Name                  ; state.execute_addR ; state.execute_loadR2 ; state.execute_loadR ; state.execute_storeR ; state.execute_pop2 ; state.execute_pop ; state.execute_push ; state.execute_return2 ; state.execute_return ; state.execute_call ; state.execute_wait2 ; state.execute_wait ; state.execute_out ; state.execute_in ; state.execute_shr ; state.execute_shl ; state.execute_addi ; state.execute_jzero ; state.execute_jpos ; state.execute_and ; state.execute_or ; state.execute_xor ; state.execute_subt ; state.execute_jneg ; state.execute_jump ; state.execute_load ; state.execute_store2 ; state.execute_store ; state.execute_add ; state.decode ; state.fetch ; state.reset_pc ;
++-----------------------+--------------------+----------------------+---------------------+----------------------+--------------------+-------------------+--------------------+-----------------------+----------------------+--------------------+---------------------+--------------------+-------------------+------------------+-------------------+-------------------+--------------------+---------------------+--------------------+-------------------+------------------+-------------------+--------------------+--------------------+--------------------+--------------------+----------------------+---------------------+-------------------+--------------+-------------+----------------+
+; state.reset_pc        ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 0              ;
+; state.fetch           ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 1           ; 1              ;
+; state.decode          ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 1            ; 0           ; 1              ;
+; state.execute_add     ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 1                 ; 0            ; 0           ; 1              ;
+; state.execute_store   ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 1                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_store2  ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 1                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_load    ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 1                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_jump    ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 1                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_jneg    ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 1                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_subt    ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 1                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_xor     ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 1                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_or      ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 1                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_and     ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 1                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_jpos    ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 1                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_jzero   ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 1                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_addi    ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 1                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_shl     ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 1                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_shr     ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 1                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_in      ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 1                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_out     ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 1                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_wait    ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 1                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_wait2   ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 1                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_call    ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 1                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_return  ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 1                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_return2 ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 1                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_push    ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 1                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_pop     ; 0                  ; 0                    ; 0                   ; 0                    ; 0                  ; 1                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_pop2    ; 0                  ; 0                    ; 0                   ; 0                    ; 1                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_storeR  ; 0                  ; 0                    ; 0                   ; 1                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_loadR   ; 0                  ; 0                    ; 1                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_loadR2  ; 0                  ; 1                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
+; state.execute_addR    ; 1                  ; 0                    ; 0                   ; 0                    ; 0                  ; 0                 ; 0                  ; 0                     ; 0                    ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                 ; 0                  ; 0                   ; 0                  ; 0                 ; 0                ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                    ; 0                   ; 0                 ; 0            ; 0           ; 1              ;
++-----------------------+--------------------+----------------------+---------------------+----------------------+--------------------+-------------------+--------------------+-----------------------+----------------------+--------------------+---------------------+--------------------+-------------------+------------------+-------------------+-------------------+--------------------+---------------------+--------------------+-------------------+------------------+-------------------+--------------------+--------------------+--------------------+--------------------+----------------------+---------------------+-------------------+--------------+-------------+----------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                               ;
++-----------------------------------------------------+------------------------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal                ; Free of Timing Hazards ;
++-----------------------------------------------------+------------------------------------+------------------------+
+; CPU16_Fibo:inst|adder_aux[3]                        ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[2]                        ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[1]                        ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[0]                        ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[7]                        ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[6]                        ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[5]                        ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[4]                        ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[11]                       ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[10]                       ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[9]                        ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[8]                        ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[15]                       ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[14]                       ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[13]                       ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|adder_aux[12]                       ; CPU16_Fibo:inst|state.execute_addR ; yes                    ;
+; CPU16_Fibo:inst|register_out[3]                     ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|memory_address_register[0]          ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|memory_address_register[1]          ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|memory_address_register[2]          ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|memory_address_register[3]          ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|memory_address_register[4]          ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|memory_address_register[5]          ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|memory_address_register[6]          ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|memory_address_register[7]          ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|register_out[2]                     ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[1]                     ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[0]                     ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[8]                     ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|program_address_register[0]         ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|program_address_register[1]         ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|program_address_register[2]         ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|program_address_register[3]         ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|program_address_register[4]         ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|program_address_register[5]         ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|program_address_register[6]         ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|program_address_register[7]         ; CPU16_Fibo:inst|WideOr12           ; yes                    ;
+; CPU16_Fibo:inst|register_out[9]                     ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[7]                     ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[6]                     ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[5]                     ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[4]                     ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[11]                    ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[10]                    ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[15]                    ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[14]                    ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[13]                    ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; CPU16_Fibo:inst|register_out[12]                    ; CPU16_Fibo:inst|WideOr9            ; yes                    ;
+; Number of user-specified and inferred latches = 48  ;                                    ;                        ;
++-----------------------------------------------------+------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++----------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                 ;
++-------------------------------------------------------------------------------+--------------------+
+; Register name                                                                 ; Reason for Removal ;
++-------------------------------------------------------------------------------+--------------------+
+; ct:inst6|lpm_counter:lpm_counter_component|cntr_8mh:auto_generated|safe_q[21] ; Lost fanout        ;
+; CPU16_Fibo:inst|state.execute_store2                                          ; Lost fanout        ;
+; CPU16_Fibo:inst|state~4                                                       ; Lost fanout        ;
+; CPU16_Fibo:inst|state~5                                                       ; Lost fanout        ;
+; CPU16_Fibo:inst|state~6                                                       ; Lost fanout        ;
+; CPU16_Fibo:inst|state~7                                                       ; Lost fanout        ;
+; CPU16_Fibo:inst|state~8                                                       ; Lost fanout        ;
+; Total Number of Removed Registers = 7                                         ;                    ;
++-------------------------------------------------------------------------------+--------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 172   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 8     ;
+; Number of registers using Asynchronous Clear ; 31    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 120   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
+; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |fibo_circ|CPU16_Fibo:inst|program_counter[2] ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|stack_pointer[7]   ;
+; 23:1               ; 4 bits    ; 60 LEs        ; 32 LEs               ; 28 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_D[8]      ;
+; 23:1               ; 4 bits    ; 60 LEs        ; 32 LEs               ; 28 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_C[9]      ;
+; 23:1               ; 4 bits    ; 60 LEs        ; 32 LEs               ; 28 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_B[10]     ;
+; 23:1               ; 4 bits    ; 60 LEs        ; 32 LEs               ; 28 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_A[10]     ;
+; 24:1               ; 2 bits    ; 32 LEs        ; 20 LEs               ; 12 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_D[12]     ;
+; 24:1               ; 2 bits    ; 32 LEs        ; 20 LEs               ; 12 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_C[12]     ;
+; 24:1               ; 2 bits    ; 32 LEs        ; 20 LEs               ; 12 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_B[12]     ;
+; 24:1               ; 2 bits    ; 32 LEs        ; 20 LEs               ; 12 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_A[12]     ;
+; 25:1               ; 2 bits    ; 32 LEs        ; 20 LEs               ; 12 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_D[14]     ;
+; 25:1               ; 2 bits    ; 32 LEs        ; 20 LEs               ; 12 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_C[14]     ;
+; 25:1               ; 2 bits    ; 32 LEs        ; 20 LEs               ; 12 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_B[14]     ;
+; 25:1               ; 2 bits    ; 32 LEs        ; 20 LEs               ; 12 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_A[14]     ;
+; 28:1               ; 4 bits    ; 72 LEs        ; 40 LEs               ; 32 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_D[4]      ;
+; 28:1               ; 4 bits    ; 72 LEs        ; 40 LEs               ; 32 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_C[4]      ;
+; 28:1               ; 4 bits    ; 72 LEs        ; 40 LEs               ; 32 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_B[4]      ;
+; 28:1               ; 4 bits    ; 72 LEs        ; 40 LEs               ; 32 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_A[4]      ;
+; 29:1               ; 2 bits    ; 38 LEs        ; 24 LEs               ; 14 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_D[3]      ;
+; 29:1               ; 2 bits    ; 38 LEs        ; 24 LEs               ; 14 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_C[2]      ;
+; 29:1               ; 2 bits    ; 38 LEs        ; 24 LEs               ; 14 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_B[2]      ;
+; 29:1               ; 2 bits    ; 38 LEs        ; 24 LEs               ; 14 LEs                 ; Yes        ; |fibo_circ|CPU16_Fibo:inst|register_A[2]      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |fibo_circ|CPU16_Fibo:inst|Mux53              ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |fibo_circ|CPU16_Fibo:inst|Mux1               ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |fibo_circ|CPU16_Fibo:inst|Selector10         ;
+; 27:1               ; 8 bits    ; 144 LEs       ; 16 LEs               ; 128 LEs                ; No         ; |fibo_circ|CPU16_Fibo:inst|Selector0          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Source assignments for CPU16_Fibo:inst|altsyncram:mem_instrucoes|altsyncram_8js:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------+
+; Assignment                      ; Value              ; From ; To                               ;
++---------------------------------+--------------------+------+----------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                ;
++---------------------------------+--------------------+------+----------------------------------+
+
+
++-------------------------------------------------------------------------------------------+
+; Source assignments for CPU16_Fibo:inst|altsyncram:mem_dados|altsyncram_0os:auto_generated ;
++---------------------------------+--------------------+------+-----------------------------+
+; Assignment                      ; Value              ; From ; To                          ;
++---------------------------------+--------------------+------+-----------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                           ;
++---------------------------------+--------------------+------+-----------------------------+
+
+
++-------------------------------------------------------------------+
+; Source assignments for ct:inst6|lpm_counter:lpm_counter_component ;
++---------------------------+-------+------+------------------------+
+; Assignment                ; Value ; From ; To                     ;
++---------------------------+-------+------+------------------------+
+; SUPPRESS_DA_RULE_INTERNAL ; a101  ; -    ; -                      ;
+; SUPPRESS_DA_RULE_INTERNAL ; s102  ; -    ; -                      ;
+; SUPPRESS_DA_RULE_INTERNAL ; s103  ; -    ; -                      ;
++---------------------------+-------+------+------------------------+
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU16_Fibo:inst ;
++-----------------+-------+------------------------------------+
+; Parameter Name  ; Value ; Type                               ;
++-----------------+-------+------------------------------------+
+; reset_pc        ; 0     ; Signed Integer                     ;
+; fetch           ; 1     ; Signed Integer                     ;
+; decode          ; 2     ; Signed Integer                     ;
+; execute_add     ; 3     ; Signed Integer                     ;
+; execute_store   ; 4     ; Signed Integer                     ;
+; execute_store2  ; 5     ; Signed Integer                     ;
+; execute_load    ; 6     ; Signed Integer                     ;
+; execute_jump    ; 7     ; Signed Integer                     ;
+; execute_jneg    ; 8     ; Signed Integer                     ;
+; execute_subt    ; 9     ; Signed Integer                     ;
+; execute_xor     ; 10    ; Signed Integer                     ;
+; execute_or      ; 11    ; Signed Integer                     ;
+; execute_and     ; 12    ; Signed Integer                     ;
+; execute_jpos    ; 13    ; Signed Integer                     ;
+; execute_jzero   ; 14    ; Signed Integer                     ;
+; execute_addi    ; 15    ; Signed Integer                     ;
+; execute_shl     ; 16    ; Signed Integer                     ;
+; execute_shr     ; 17    ; Signed Integer                     ;
+; execute_in      ; 18    ; Signed Integer                     ;
+; execute_out     ; 19    ; Signed Integer                     ;
+; execute_wait    ; 20    ; Signed Integer                     ;
+; execute_wait2   ; 21    ; Signed Integer                     ;
+; execute_call    ; 22    ; Signed Integer                     ;
+; execute_return  ; 23    ; Signed Integer                     ;
+; execute_return2 ; 24    ; Signed Integer                     ;
+; execute_push    ; 25    ; Signed Integer                     ;
+; execute_pop     ; 26    ; Signed Integer                     ;
+; execute_pop2    ; 27    ; Signed Integer                     ;
+; execute_storeR  ; 28    ; Signed Integer                     ;
+; execute_loadR   ; 29    ; Signed Integer                     ;
+; execute_loadR2  ; 30    ; Signed Integer                     ;
+; execute_addR    ; 31    ; Signed Integer                     ;
++-----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU16_Fibo:inst|altsyncram:mem_instrucoes ;
++------------------------------------+----------------------+----------------------------+
+; Parameter Name                     ; Value                ; Type                       ;
++------------------------------------+----------------------+----------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                    ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                 ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY               ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE               ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE             ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                    ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                    ;
+; WIDTH_A                            ; 16                   ; Signed Integer             ;
+; WIDTHAD_A                          ; 8                    ; Signed Integer             ;
+; NUMWORDS_A                         ; 1                    ; Untyped                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                    ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                    ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                    ;
+; WIDTH_B                            ; 1                    ; Untyped                    ;
+; WIDTHAD_B                          ; 1                    ; Untyped                    ;
+; NUMWORDS_B                         ; 1                    ; Untyped                    ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                    ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                    ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                    ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                    ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                    ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                    ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                    ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                    ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                    ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                    ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                    ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                    ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                    ;
+; BYTE_SIZE                          ; 8                    ; Untyped                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                    ;
+; INIT_FILE                          ; fibonacci.mif        ; Untyped                    ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                    ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                    ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                    ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                    ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                    ;
+; CBXI_PARAMETER                     ; altsyncram_8js       ; Untyped                    ;
++------------------------------------+----------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CPU16_Fibo:inst|altsyncram:mem_dados ;
++------------------------------------+----------------------+-----------------------+
+; Parameter Name                     ; Value                ; Type                  ;
++------------------------------------+----------------------+-----------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped               ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY            ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY          ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE          ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE        ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped               ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped               ;
+; WIDTH_A                            ; 16                   ; Signed Integer        ;
+; WIDTHAD_A                          ; 8                    ; Signed Integer        ;
+; NUMWORDS_A                         ; 1                    ; Untyped               ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped               ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped               ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped               ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped               ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped               ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped               ;
+; WIDTH_B                            ; 1                    ; Untyped               ;
+; WIDTHAD_B                          ; 1                    ; Untyped               ;
+; NUMWORDS_B                         ; 1                    ; Untyped               ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped               ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped               ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped               ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped               ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped               ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped               ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped               ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped               ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped               ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped               ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped               ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped               ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped               ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped               ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped               ;
+; BYTE_SIZE                          ; 8                    ; Untyped               ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped               ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped               ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped               ;
+; INIT_FILE                          ; data.mif             ; Untyped               ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped               ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped               ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped               ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped               ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped               ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped               ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped               ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped               ;
+; ENABLE_ECC                         ; FALSE                ; Untyped               ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped               ;
+; CBXI_PARAMETER                     ; altsyncram_0os       ; Untyped               ;
++------------------------------------+----------------------+-----------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ct:inst6|lpm_counter:lpm_counter_component ;
++------------------------+-------------+--------------------------------------------------+
+; Parameter Name         ; Value       ; Type                                             ;
++------------------------+-------------+--------------------------------------------------+
+; AUTO_CARRY_CHAINS      ; ON          ; AUTO_CARRY                                       ;
+; IGNORE_CARRY_BUFFERS   ; OFF         ; IGNORE_CARRY                                     ;
+; AUTO_CASCADE_CHAINS    ; ON          ; AUTO_CASCADE                                     ;
+; IGNORE_CASCADE_BUFFERS ; OFF         ; IGNORE_CASCADE                                   ;
+; LPM_WIDTH              ; 22          ; Signed Integer                                   ;
+; LPM_DIRECTION          ; UP          ; Untyped                                          ;
+; LPM_MODULUS            ; 0           ; Untyped                                          ;
+; LPM_AVALUE             ; UNUSED      ; Untyped                                          ;
+; LPM_SVALUE             ; UNUSED      ; Untyped                                          ;
+; LPM_PORT_UPDOWN        ; PORT_UNUSED ; Untyped                                          ;
+; DEVICE_FAMILY          ; Cyclone II  ; Untyped                                          ;
+; CARRY_CHAIN            ; MANUAL      ; Untyped                                          ;
+; CARRY_CHAIN_LENGTH     ; 48          ; CARRY_CHAIN_LENGTH                               ;
+; NOT_GATE_PUSH_BACK     ; ON          ; NOT_GATE_PUSH_BACK                               ;
+; CARRY_CNT_EN           ; SMART       ; Untyped                                          ;
+; LABWIDE_SCLR           ; ON          ; Untyped                                          ;
+; USE_NEW_VERSION        ; TRUE        ; Untyped                                          ;
+; CBXI_PARAMETER         ; cntr_8mh    ; Untyped                                          ;
++------------------------+-------------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                      ;
++-------------------------------------------+-------------------------------------------+
+; Name                                      ; Value                                     ;
++-------------------------------------------+-------------------------------------------+
+; Number of entity instances                ; 2                                         ;
+; Entity Instance                           ; CPU16_Fibo:inst|altsyncram:mem_instrucoes ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                               ;
+;     -- WIDTH_A                            ; 16                                        ;
+;     -- NUMWORDS_A                         ; 1                                         ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                              ;
+;     -- WIDTH_B                            ; 1                                         ;
+;     -- NUMWORDS_B                         ; 1                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                 ;
+; Entity Instance                           ; CPU16_Fibo:inst|altsyncram:mem_dados      ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                               ;
+;     -- WIDTH_A                            ; 16                                        ;
+;     -- NUMWORDS_A                         ; 1                                         ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                              ;
+;     -- WIDTH_B                            ; 1                                         ;
+;     -- NUMWORDS_B                         ; 1                                         ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                    ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                              ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                      ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                 ;
++-------------------------------------------+-------------------------------------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+    Info: Processing started: Wed Jun 29 12:51:47 2011
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off CPU16 -c CPU16
+Info: Found 1 design units, including 1 entities, in source file cpu16.v
+    Info: Found entity 1: CPU16
+Info: Found 1 design units, including 1 entities, in source file cpu16_fibo.v
+    Info: Found entity 1: CPU16_Fibo
+Info: Found 1 design units, including 1 entities, in source file fibo_circ.bdf
+    Info: Found entity 1: fibo_circ
+Info: Found 1 design units, including 1 entities, in source file freq_divider.bdf
+    Info: Found entity 1: freq_divider
+Info: Found 1 design units, including 1 entities, in source file /labarq1/cpu16g/trunk/nios/ct.v
+    Info: Found entity 1: ct
+Info: Elaborating entity "fibo_circ" for the top level hierarchy
+Info: Elaborating entity "7449" for hierarchy "7449:inst4"
+Info: Elaborated megafunction instantiation "7449:inst4"
+Info: Elaborating entity "CPU16_Fibo" for hierarchy "CPU16_Fibo:inst"
+Warning (10036): Verilog HDL or VHDL warning at CPU16_Fibo.v(40): object "program_data_register_out" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(134): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(414): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(432): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(444): truncated value with size 16 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(445): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(451): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(472): truncated value with size 32 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(540): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(542): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(544): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(546): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(560): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(567): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(574): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(581): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(601): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(608): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(615): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(622): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(636): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(643): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(650): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(657): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(679): variable "stack_pointer" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(682): variable "stack_pointer" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(682): truncated value with size 32 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(688): variable "stack_pointer" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(692): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(694): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(696): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(698): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(703): variable "stack_pointer" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(703): truncated value with size 32 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(711): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(713): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(715): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(717): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(722): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(722): truncated value with size 16 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(724): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(724): truncated value with size 16 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(726): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(726): truncated value with size 16 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(728): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(728): truncated value with size 16 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(736): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(736): truncated value with size 16 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(738): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(738): truncated value with size 16 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(740): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(740): truncated value with size 16 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(742): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at CPU16_Fibo.v(742): truncated value with size 16 to match size of target (8)
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(752): variable "register_A" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(754): variable "register_B" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(756): variable "register_C" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at CPU16_Fibo.v(758): variable "register_D" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Info (10264): Verilog HDL Case Statement information at CPU16_Fibo.v(767): all case item expressions in this case statement are onehot
+Warning (10240): Verilog HDL Always Construct warning at CPU16_Fibo.v(524): inferring latch(es) for variable "program_address_register", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at CPU16_Fibo.v(524): inferring latch(es) for variable "memory_address_register", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at CPU16_Fibo.v(524): inferring latch(es) for variable "register_out", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at CPU16_Fibo.v(524): inferring latch(es) for variable "adder_aux", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "adder_aux[0]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[1]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[2]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[3]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[4]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[5]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[6]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[7]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[8]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[9]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[10]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[11]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[12]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[13]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[14]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "adder_aux[15]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[0]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[1]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[2]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[3]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[4]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[5]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[6]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[7]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[8]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[9]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[10]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[11]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[12]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[13]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[14]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "register_out[15]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "memory_address_register[0]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "memory_address_register[1]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "memory_address_register[2]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "memory_address_register[3]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "memory_address_register[4]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "memory_address_register[5]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "memory_address_register[6]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "memory_address_register[7]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "program_address_register[0]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "program_address_register[1]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "program_address_register[2]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "program_address_register[3]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "program_address_register[4]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "program_address_register[5]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "program_address_register[6]" at CPU16_Fibo.v(524)
+Info (10041): Inferred latch for "program_address_register[7]" at CPU16_Fibo.v(524)
+Info: Elaborating entity "altsyncram" for hierarchy "CPU16_Fibo:inst|altsyncram:mem_instrucoes"
+Info: Elaborated megafunction instantiation "CPU16_Fibo:inst|altsyncram:mem_instrucoes"
+Info: Instantiated megafunction "CPU16_Fibo:inst|altsyncram:mem_instrucoes" with the following parameter:
+    Info: Parameter "operation_mode" = "SINGLE_PORT"
+    Info: Parameter "width_a" = "16"
+    Info: Parameter "widthad_a" = "8"
+    Info: Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info: Parameter "lpm_type" = "altsyncram"
+    Info: Parameter "init_file" = "fibonacci.mif"
+    Info: Parameter "intended_device_family" = "Cyclone"
+Info: Found 1 design units, including 1 entities, in source file db/altsyncram_8js.tdf
+    Info: Found entity 1: altsyncram_8js
+Info: Elaborating entity "altsyncram_8js" for hierarchy "CPU16_Fibo:inst|altsyncram:mem_instrucoes|altsyncram_8js:auto_generated"
+Info: Elaborating entity "altsyncram" for hierarchy "CPU16_Fibo:inst|altsyncram:mem_dados"
+Info: Elaborated megafunction instantiation "CPU16_Fibo:inst|altsyncram:mem_dados"
+Info: Instantiated megafunction "CPU16_Fibo:inst|altsyncram:mem_dados" with the following parameter:
+    Info: Parameter "operation_mode" = "SINGLE_PORT"
+    Info: Parameter "width_a" = "16"
+    Info: Parameter "widthad_a" = "8"
+    Info: Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info: Parameter "lpm_type" = "altsyncram"
+    Info: Parameter "init_file" = "data.mif"
+    Info: Parameter "intended_device_family" = "Cyclone"
+Info: Found 1 design units, including 1 entities, in source file db/altsyncram_0os.tdf
+    Info: Found entity 1: altsyncram_0os
+Info: Elaborating entity "altsyncram_0os" for hierarchy "CPU16_Fibo:inst|altsyncram:mem_dados|altsyncram_0os:auto_generated"
+Info: Elaborating entity "ct" for hierarchy "ct:inst6"
+Info: Elaborating entity "lpm_counter" for hierarchy "ct:inst6|lpm_counter:lpm_counter_component"
+Info: Elaborated megafunction instantiation "ct:inst6|lpm_counter:lpm_counter_component"
+Info: Instantiated megafunction "ct:inst6|lpm_counter:lpm_counter_component" with the following parameter:
+    Info: Parameter "lpm_direction" = "UP"
+    Info: Parameter "lpm_port_updown" = "PORT_UNUSED"
+    Info: Parameter "lpm_type" = "LPM_COUNTER"
+    Info: Parameter "lpm_width" = "22"
+Info: Found 1 design units, including 1 entities, in source file db/cntr_8mh.tdf
+    Info: Found entity 1: cntr_8mh
+Info: Elaborating entity "cntr_8mh" for hierarchy "ct:inst6|lpm_counter:lpm_counter_component|cntr_8mh:auto_generated"
+Warning: Latch CPU16_Fibo:inst|register_out[3] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|memory_address_register[0] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_return2
+Warning: Latch CPU16_Fibo:inst|memory_address_register[1] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_return2
+Warning: Latch CPU16_Fibo:inst|memory_address_register[2] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_return2
+Warning: Latch CPU16_Fibo:inst|memory_address_register[3] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_return2
+Warning: Latch CPU16_Fibo:inst|memory_address_register[4] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_return2
+Warning: Latch CPU16_Fibo:inst|memory_address_register[5] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_return2
+Warning: Latch CPU16_Fibo:inst|memory_address_register[6] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_return2
+Warning: Latch CPU16_Fibo:inst|memory_address_register[7] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_return2
+Warning: Latch CPU16_Fibo:inst|register_out[2] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[1] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[0] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[8] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|program_address_register[0] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.decode
+Warning: Latch CPU16_Fibo:inst|program_address_register[1] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.decode
+Warning: Latch CPU16_Fibo:inst|program_address_register[2] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.decode
+Warning: Latch CPU16_Fibo:inst|program_address_register[3] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.decode
+Warning: Latch CPU16_Fibo:inst|program_address_register[4] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.decode
+Warning: Latch CPU16_Fibo:inst|program_address_register[5] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.decode
+Warning: Latch CPU16_Fibo:inst|program_address_register[6] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.decode
+Warning: Latch CPU16_Fibo:inst|program_address_register[7] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.decode
+Warning: Latch CPU16_Fibo:inst|register_out[9] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[7] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[6] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[5] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[4] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[11] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[10] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[15] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[14] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[13] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Warning: Latch CPU16_Fibo:inst|register_out[12] has unsafe behavior
+    Warning: Ports D and ENA on the latch are fed by the same signal CPU16_Fibo:inst|state.execute_call
+Info: 7 registers lost all their fanouts during netlist optimizations. The first 7 are displayed below.
+    Info: Register "ct:inst6|lpm_counter:lpm_counter_component|cntr_8mh:auto_generated|safe_q[21]" lost all its fanouts during netlist optimizations.
+    Info: Register "CPU16_Fibo:inst|state.execute_store2" lost all its fanouts during netlist optimizations.
+    Info: Register "CPU16_Fibo:inst|state~4" lost all its fanouts during netlist optimizations.
+    Info: Register "CPU16_Fibo:inst|state~5" lost all its fanouts during netlist optimizations.
+    Info: Register "CPU16_Fibo:inst|state~6" lost all its fanouts during netlist optimizations.
+    Info: Register "CPU16_Fibo:inst|state~7" lost all its fanouts during netlist optimizations.
+    Info: Register "CPU16_Fibo:inst|state~8" lost all its fanouts during netlist optimizations.
+Info: Implemented 1595 device resources after synthesis - the final resource count might be different
+    Info: Implemented 2 input pins
+    Info: Implemented 28 output pins
+    Info: Implemented 1533 logic cells
+    Info: Implemented 32 RAM segments
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 126 warnings
+    Info: Peak virtual memory: 231 megabytes
+    Info: Processing ended: Wed Jun 29 12:52:06 2011
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:05
+
+
